@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using FMIWebsiteAPI.Models.Swagger;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace FMIWebsiteAPI.StartupConfigurationTools
 {
@@ -18,7 +21,7 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 };
-                options.AddSecurityDefinition("Bearer", securityScheme);
+                options.AddSecurityDefinition(securityScheme.Name, securityScheme);
 
                 var requirement = new OpenApiSecurityRequirement
                 {
@@ -36,6 +39,11 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
 
                 options.AddSecurityRequirement(requirement);
             });
+        }
+
+        public static void SetEndpoint(this SwaggerUIOptions options, SwaggerEndpointConfiguration configuration)
+        {
+            options.SwaggerEndpoint(configuration.Url, configuration.Name);
         }
     }
 }
