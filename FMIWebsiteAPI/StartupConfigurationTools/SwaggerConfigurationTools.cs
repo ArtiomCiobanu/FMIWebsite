@@ -21,7 +21,7 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 };
-                options.AddSecurityDefinition(securityScheme.Name, securityScheme);
+                options.AddSecurityDefinition("Bearer", securityScheme);
 
                 var requirement = new OpenApiSecurityRequirement
                 {

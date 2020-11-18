@@ -25,6 +25,7 @@ namespace FMIWebsiteAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IActionResult AuthorizeTest()
         {
             return Ok("You are authorized!");
