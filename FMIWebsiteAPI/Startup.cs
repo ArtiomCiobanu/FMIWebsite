@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using FMIWebsiteAPI.Models.Swagger;
 using FMIWebsiteAPI.StartupConfigurationTools;
 using FMIWebsiteAuthorizationAPI.API;
 using FMIWebsiteAuthorizationAPI.Models;
@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace FMIWebsiteAPI
 {
@@ -59,7 +58,10 @@ namespace FMIWebsiteAPI
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "FMI WebSite Main API");
+                var endpointConfiguration = Configuration.GetSection("SwaggerConfiguration").GetSection("Endpoints")
+                    .Get<SwaggerEndpointConfiguration>();
+
+                options.SetEndpoint(endpointConfiguration);
             });
 
             if (env.IsDevelopment())
