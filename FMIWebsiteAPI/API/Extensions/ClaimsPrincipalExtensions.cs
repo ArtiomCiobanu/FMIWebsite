@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace FMIWebsiteAPI.API.Extentions
+namespace FMIWebsiteAPI.API.Extensions
 {
-    public static class ClaimsPrincipalExtentions
+    public static class ClaimsPrincipalExtensions
     {
         public static List<Claim> GetAllClaims(this ClaimsPrincipal claimsPrincipal)
         {
