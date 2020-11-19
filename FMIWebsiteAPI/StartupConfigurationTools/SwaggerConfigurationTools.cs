@@ -13,7 +13,7 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
         {
             services.AddSwaggerGen(options =>
             {
-                var securityScheme = new OpenApiSecurityScheme()
+                var securityScheme = new OpenApiSecurityScheme
                 {
                     Description = "Json Web Token for authorization. Write: 'Bearer {your token}'",
                     Name = "Authorization",
@@ -21,17 +21,21 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
                 };
-                options.AddSecurityDefinition("Bearer", securityScheme);
+                options.AddSecurityDefinition(securityScheme.Scheme, securityScheme);
 
                 var requirement = new OpenApiSecurityRequirement
                 {
                     {
-                        new OpenApiSecurityScheme()
+                        new OpenApiSecurityScheme
                         {
-                            Reference = new OpenApiReference() {Type = ReferenceType.SecurityScheme, Id = "Bearer"},
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = securityScheme.Scheme
+                            },
                             Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header
+                            Name = securityScheme.Scheme,
+                            In = securityScheme.In
                         },
                         new List<string>()
                     }
