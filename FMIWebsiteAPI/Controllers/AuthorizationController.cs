@@ -14,11 +14,6 @@ namespace FMIWebsiteAPI.Controllers
         [Route("LogIn")]
         public IActionResult LogIn([FromBody] AccountAuthenticationModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             //Log in logic here
 
             return Ok();

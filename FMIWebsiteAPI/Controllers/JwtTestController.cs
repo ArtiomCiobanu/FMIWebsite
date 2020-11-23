@@ -47,9 +47,9 @@ namespace FMIWebsiteAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetAdminToken(string userName)
+        public IActionResult GetAdminToken(string userId)
         {
-            return Ok(JwtManager.GenerateToken(userName, UserRole.Admin.ToString()));
+            return Ok(JwtManager.GenerateToken(userId, UserRole.Admin.ToString()));
         }
 
         [HttpGet]
