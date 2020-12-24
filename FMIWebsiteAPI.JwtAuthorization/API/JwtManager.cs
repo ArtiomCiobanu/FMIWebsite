@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using FMIWebsiteAPI.Models.Accounts;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
@@ -15,7 +16,7 @@ namespace FMIWebsiteAuthorizationAPI.API
             JwtConfigurator = jwtConfigurator;
         }
 
-        public string GenerateToken(string userId, string userRole)
+        public string GenerateToken(Guid userId, UserRole userRole)
         {
             var jwtConfiguration = JwtConfigurator.GetConfiguration();
             var signingCredentials = JwtConfigurator.GetSigningCredentials();
@@ -27,8 +28,8 @@ namespace FMIWebsiteAuthorizationAPI.API
                 jwtConfiguration.Audience,
                 new[]
                 {
-                    new Claim("ID", userId),
-                    new Claim(ClaimTypes.Role, userRole)
+                    new Claim("ID", userId.ToString()),
+                    new Claim(ClaimTypes.Role, userRole.ToString())
                 },
                 currentDateTime,
                 currentDateTime.AddDays(jwtConfiguration.TokenLifetime),

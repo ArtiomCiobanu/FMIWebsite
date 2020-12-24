@@ -1,21 +1,20 @@
-﻿namespace FMIWebsiteAPI.Models.Accounts
+﻿using System;
+
+namespace FMIWebsiteAPI.Models.Accounts
 {
     public class User
     {
-        public UserRole Role { get; private set; }
-        public string Id { get; }
+        public UserRole Role { get; set; }
+        public Guid Id { get; set; }
 
-        public User(string id, UserRole role)
+        public User()
+        {
+        }
+
+        public User(Guid id, UserRole role)
         {
             Id = id;
             Role = role;
         }
-
-        public void SetRole(UserRole newRole)
-        {
-            Role = newRole;
-        }
-
-        public string GetStringRole() => Role.ToString();
     }
 }

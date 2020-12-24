@@ -1,4 +1,5 @@
-﻿using FMIWebsiteAPI.Models.Accounts;
+﻿using System;
+using FMIWebsiteAPI.Models.Accounts;
 using FMIWebsiteAuthorizationAPI.API;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,8 +16,7 @@ namespace FMIWebsiteAPI.Controllers
         {
             JwtManager = jwtManager;
         }
-
-
+        
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult AdminTest()
@@ -42,14 +42,14 @@ namespace FMIWebsiteAPI.Controllers
         [AllowAnonymous]
         public IActionResult GetUserToken()
         {
-            return Ok(JwtManager.GenerateToken("Test", UserRole.User.ToString()));
+            return Ok(JwtManager.GenerateToken(Guid.NewGuid(), UserRole.User));
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetAdminToken(string userId)
+        public IActionResult GetAdminToken(Guid userId)
         {
-            return Ok(JwtManager.GenerateToken(userId, UserRole.Admin.ToString()));
+            return Ok(JwtManager.GenerateToken(userId, UserRole.Admin));
         }
 
         [HttpGet]
