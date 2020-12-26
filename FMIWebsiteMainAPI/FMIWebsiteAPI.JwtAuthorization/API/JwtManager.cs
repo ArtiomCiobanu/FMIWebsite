@@ -10,7 +10,6 @@ namespace FMIWebsiteAuthorizationAPI.API
     public class JwtManager : IJwtManager
     {
         private IJwtConfigurator JwtConfigurator { get; }
-        public IJwtConfigurator GetJwtConfigurator() => JwtConfigurator;
 
         public JwtManager(IJwtConfigurator jwtConfigurator)
         {

@@ -7,7 +7,6 @@ namespace FMIWebsiteAuthorizationAPI.API
     {
         JwtConfiguration Configuration { get; }
         TokenValidationParameters ValidationParameters { get; }
-        void SpecifyConfiguration(JwtConfiguration jwtConfiguration);
         SigningCredentials GetSigningCredentials();
     }
 }

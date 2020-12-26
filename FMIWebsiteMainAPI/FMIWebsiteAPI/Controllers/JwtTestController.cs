@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Accounts;
 using FMIWebsiteAPI.Shared;
 using FMIWebsiteAuthorizationAPI.API;
@@ -50,9 +49,9 @@ namespace FMIWebsiteAPI.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetAdminToken(Guid userId)
+        public IActionResult GetAdminToken()
         {
-            return Ok(JwtManager.GenerateToken(userId, UserRole.Admin));
+            return Ok(JwtManager.GenerateToken(Guid.NewGuid(), UserRole.Admin));
         }
 
         [HttpGet]
@@ -70,7 +69,7 @@ namespace FMIWebsiteAPI.Controllers
         public IActionResult GetUserId()
         {
             var user = User;
-            var id = user.Claims.Where(c => c.Type == AppClaimTypes.UserId);
+            var id = User.Claims.Where(c => c.Type == AppClaimTypes.UserId);
             
             return Ok();
         }

@@ -6,11 +6,11 @@ namespace FMIWebsiteAuthorizationAPI.API
 {
     public class JwtConfigurator : IJwtConfigurator
     {
-        public JwtConfiguration Configuration { get; private set; }
+        public JwtConfiguration Configuration { get; }
 
         public JwtConfigurator(JwtConfiguration jwtConfiguration)
         {
-            SpecifyConfiguration(jwtConfiguration);
+            Configuration = jwtConfiguration;
         }
 
         public TokenValidationParameters ValidationParameters => new TokenValidationParameters
@@ -24,11 +24,6 @@ namespace FMIWebsiteAuthorizationAPI.API
             IssuerSigningKey = GetSymmetricSecurityKey(),
             ValidateIssuerSigningKey = true
         };
-
-        public void SpecifyConfiguration(JwtConfiguration jwtConfiguration)
-        {
-            Configuration = jwtConfiguration;
-        }
 
         public SigningCredentials GetSigningCredentials() =>
             new SigningCredentials(GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature);
