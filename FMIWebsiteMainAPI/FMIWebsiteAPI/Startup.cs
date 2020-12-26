@@ -27,10 +27,10 @@ namespace FMIWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IJwtConfigurator, JwtConfigurator>(s =>
+            services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
-                    .GetSection(AppSettingsSections.JwtConfiguration).Get<JwtConfiguration>();
+                    .GetSection(SettingsSections.JwtConfiguration).Get<JwtConfiguration>();
 
                 return new JwtConfigurator(jwtConfiguration);
             });
@@ -45,7 +45,7 @@ namespace FMIWebsiteAPI
                 var jwtConfigurator = ServiceProvider.GetService<IJwtConfigurator>();
 
                 options.RequireHttpsMetadata = true;
-                options.TokenValidationParameters = jwtConfigurator.ValidationParameters;
+                options.TokenValidationParameters = jwtConfigurator?.ValidationParameters;
             });
             services.AddControllers();
 
@@ -61,8 +61,8 @@ namespace FMIWebsiteAPI
             app.UseSwaggerUI(options =>
             {
                 var endpointConfiguration = Configuration
-                    .GetSection(AppSettingsSections.SwaggerConfiguration)
-                    .GetSection(AppSettingsSections.SwaggerConfigurationEndpoints)
+                    .GetSection(SettingsSections.SwaggerConfiguration)
+                    .GetSection(SettingsSections.SwaggerConfigurationEndpoints)
                     .Get<SwaggerEndpointConfiguration>();
 
                 options.SetEndpoint(endpointConfiguration);

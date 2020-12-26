@@ -4,18 +4,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class AuthorizationController : ControllerBase
+    public class AccountsController : ControllerBase
     {
         [HttpPost]
-        [AllowAnonymous]
         [Route("LogIn")]
-        public IActionResult LogIn([FromBody] AccountAuthenticationModel model)
+        public ActionResult<string> LogIn([FromBody] AccountAuthenticationModel model)
         {
-            //Log in logic here
+            return Ok();
+        }
 
+        [HttpPost]
+        [Route("Register")]
+        public ActionResult<string> Register()
+        {
             return Ok();
         }
     }
