@@ -10,7 +10,7 @@ namespace FMIWebsiteAPI.Controllers
     [Route("[controller]/[action]")]
     public class JwtTestController : ControllerBase
     {
-        private IJwtManager JwtManager { get; set; }
+        private IJwtManager JwtManager { get; }
 
         public JwtTestController(IJwtManager jwtManager)
         {
