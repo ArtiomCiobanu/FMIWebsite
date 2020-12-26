@@ -2,7 +2,7 @@ using System;
 using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Authorization;
 using FMIWebsiteAPI.Models.Swagger;
-using FMIWebsiteAPI.Shared;
+using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAuthorizationAPI.API;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

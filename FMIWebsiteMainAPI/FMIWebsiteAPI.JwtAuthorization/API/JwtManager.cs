@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using FMIWebsiteAPI.Models.Accounts;
-using FMIWebsiteAPI.Shared;
+using FMIWebsiteAPI.Shared.Consts;
+using FMIWebsiteAPI.Shared.Extentions;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
@@ -45,7 +45,7 @@ namespace FMIWebsiteAuthorizationAPI.API
         {
             var jwt = (JwtSecurityToken) new JwtSecurityTokenHandler().ReadToken(token);
 
-            var result = jwt.Claims.First(c => c.Type == claimType);
+            var result = jwt.Claims.GetClaim(claimType);
             return result.Value;
         }
     }

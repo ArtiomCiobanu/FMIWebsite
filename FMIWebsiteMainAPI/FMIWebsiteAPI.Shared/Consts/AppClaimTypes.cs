@@ -1,7 +1,7 @@
 ﻿
 using System.Security.Claims;
 
-namespace FMIWebsiteAPI.Shared
+namespace FMIWebsiteAPI.Shared.Consts
 {
     public static class AppClaimTypes
     {

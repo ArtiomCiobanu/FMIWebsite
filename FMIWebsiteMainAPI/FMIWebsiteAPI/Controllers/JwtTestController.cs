@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Linq;
 using FMIWebsiteAPI.Models.Accounts;
-using FMIWebsiteAPI.Shared;
+using FMIWebsiteAPI.Shared.Consts;
+using FMIWebsiteAPI.Shared.Extentions;
 using FMIWebsiteAuthorizationAPI.API;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -69,8 +69,8 @@ namespace FMIWebsiteAPI.Controllers
         public IActionResult GetUserId()
         {
             var user = User;
-            var id = User.Claims.Where(c => c.Type == AppClaimTypes.UserId);
-            
+            var id = User.GetClaim(AppClaimTypes.UserId);
+
             return Ok();
         }
     }

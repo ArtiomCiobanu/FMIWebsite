@@ -1,4 +1,4 @@
-﻿namespace FMIWebsiteAPI.Shared
+﻿namespace FMIWebsiteAPI.Shared.Consts
 {
     public static class AppSettingsSections
     {
