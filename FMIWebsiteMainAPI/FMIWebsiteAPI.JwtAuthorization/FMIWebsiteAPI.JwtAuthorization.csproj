@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\FMIWebsiteAPI.Models\FMIWebsiteAPI.Models.csproj" />
+      <ProjectReference Include="..\FMIWebsiteAPI.Shared\FMIWebsiteAPI.Shared.csproj" />
     </ItemGroup>
 
 </Project>

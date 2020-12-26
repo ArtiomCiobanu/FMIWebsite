@@ -5,7 +5,6 @@ namespace FMIWebsiteAuthorizationAPI.API
 {
     public interface IJwtManager
     {
-        IJwtConfigurator GetJwtConfigurator();
         string GenerateToken(Guid userId, UserRole userRole);
         string GetUserIdFromToken(string token);
         string GetUserRoleFromToken(string token);

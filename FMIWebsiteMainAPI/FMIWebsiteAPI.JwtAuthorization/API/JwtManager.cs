@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Shared.Consts;
+using FMIWebsiteAPI.Shared.Extentions;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
     public class JwtManager : IJwtManager
     {
-        private IJwtConfigurator JwtConfigurator { get; set; }
-        public IJwtConfigurator GetJwtConfigurator() => JwtConfigurator;
+        private IJwtConfigurator JwtConfigurator { get; }
 
         public JwtManager(IJwtConfigurator jwtConfigurator)
         {
@@ -18,7 +18,7 @@ namespace FMIWebsiteAuthorizationAPI.API
 
         public string GenerateToken(Guid userId, UserRole userRole)
         {
-            var jwtConfiguration = JwtConfigurator.GetConfiguration();
+            var jwtConfiguration = JwtConfigurator.Configuration;
             var signingCredentials = JwtConfigurator.GetSigningCredentials();
 
             var currentDateTime = DateTime.UtcNow;
@@ -28,8 +28,8 @@ namespace FMIWebsiteAuthorizationAPI.API
                 jwtConfiguration.Audience,
                 new[]
                 {
-                    new Claim("ID", userId.ToString()),
-                    new Claim(ClaimTypes.Role, userRole.ToString())
+                    new Claim(AppClaimTypes.UserId, userId.ToString()),
+                    new Claim(AppClaimTypes.UserRole, userRole.ToString())
                 },
                 currentDateTime,
                 currentDateTime.AddDays(jwtConfiguration.TokenLifetime),
@@ -38,16 +38,15 @@ namespace FMIWebsiteAuthorizationAPI.API
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, "ID");
-        public string GetUserRoleFromToken(string token) => GetUserDataFromToken(token, ClaimTypes.Role);
+        public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserId);
+        public string GetUserRoleFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserRole);
 
         public string GetUserDataFromToken(string token, string claimType)
         {
             var jwt = (JwtSecurityToken) new JwtSecurityTokenHandler().ReadToken(token);
 
-            var idClaim = jwt.Claims.First(c => c.Type == claimType);
-
-            return idClaim.Value;
+            var result = jwt.Claims.GetClaim(claimType);
+            return result.Value;
         }
     }
 }

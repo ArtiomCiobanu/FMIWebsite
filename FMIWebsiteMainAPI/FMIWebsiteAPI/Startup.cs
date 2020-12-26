@@ -1,8 +1,9 @@
 using System;
+using FMIWebsiteAPI.Configuration;
+using FMIWebsiteAPI.Models.Authorization;
 using FMIWebsiteAPI.Models.Swagger;
-using FMIWebsiteAPI.StartupConfigurationTools;
+using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAuthorizationAPI.API;
-using FMIWebsiteAuthorizationAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,9 +27,10 @@ namespace FMIWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IJwtConfigurator, JwtConfigurator>(s =>
+            services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
-                var jwtConfiguration = Configuration.GetSection("JwtConfiguration").Get<JwtConfiguration>();
+                var jwtConfiguration = Configuration
+                    .GetSection(SettingsSections.JwtConfiguration).Get<JwtConfiguration>();
 
                 return new JwtConfigurator(jwtConfiguration);
             });
@@ -43,7 +45,7 @@ namespace FMIWebsiteAPI
                 var jwtConfigurator = ServiceProvider.GetService<IJwtConfigurator>();
 
                 options.RequireHttpsMetadata = true;
-                options.TokenValidationParameters = jwtConfigurator.ValidationParameters;
+                options.TokenValidationParameters = jwtConfigurator?.ValidationParameters;
             });
             services.AddControllers();
 
@@ -58,7 +60,9 @@ namespace FMIWebsiteAPI
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                var endpointConfiguration = Configuration.GetSection("SwaggerConfiguration").GetSection("Endpoints")
+                var endpointConfiguration = Configuration
+                    .GetSection(SettingsSections.SwaggerConfiguration)
+                    .GetSection(SettingsSections.SwaggerConfigurationEndpoints)
                     .Get<SwaggerEndpointConfiguration>();
 
                 options.SetEndpoint(endpointConfiguration);

@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
 using FMIWebsiteAPI.Models.Swagger;
+using FMIWebsiteAPI.Shared.Consts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace FMIWebsiteAPI.StartupConfigurationTools
+namespace FMIWebsiteAPI.Configuration
 {
-    public static class SwaggerConfigurationTools
+    public static class SwaggerStartupConfiguration
     {
         public static void AddConfiguredSwagger(this IServiceCollection services)
         {
@@ -16,10 +17,10 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
                 var securityScheme = new OpenApiSecurityScheme
                 {
                     Description = "Json Web Token for authorization. Write: 'Bearer {your token}'",
-                    Name = "Authorization",
+                    Name = HeaderNames.Authorization,
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Scheme = SchemeNames.Bearer
                 };
                 options.AddSecurityDefinition(securityScheme.Scheme, securityScheme);
 
@@ -33,7 +34,7 @@ namespace FMIWebsiteAPI.StartupConfigurationTools
                                 Type = ReferenceType.SecurityScheme,
                                 Id = securityScheme.Scheme
                             },
-                            Scheme = "oauth2",
+                            Scheme = SchemeNames.OAuth,
                             Name = securityScheme.Scheme,
                             In = securityScheme.In
                         },
