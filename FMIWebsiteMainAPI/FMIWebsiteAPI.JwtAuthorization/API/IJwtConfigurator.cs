@@ -1,11 +1,11 @@
-﻿using FMIWebsiteAuthorizationAPI.Models;
+﻿using FMIWebsiteAPI.Models.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
     public interface IJwtConfigurator
     {
-        JwtConfiguration GetConfiguration();
+        JwtConfiguration Configuration { get; }
         TokenValidationParameters ValidationParameters { get; }
         void SpecifyConfiguration(JwtConfiguration jwtConfiguration);
         SigningCredentials GetSigningCredentials();

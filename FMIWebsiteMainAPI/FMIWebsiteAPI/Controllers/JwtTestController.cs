@@ -70,7 +70,7 @@ namespace FMIWebsiteAPI.Controllers
         public IActionResult GetUserId()
         {
             var user = User;
-            var id = user.Claims.Where(c => c.Type == EndpointConstNames.UserIdClaim);
+            var id = user.Claims.Where(c => c.Type == AppClaimTypes.UserId);
             
             return Ok();
         }

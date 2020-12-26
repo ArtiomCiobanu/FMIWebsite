@@ -1,13 +1,12 @@
 ﻿using System.Text;
-using FMIWebsiteAuthorizationAPI.Models;
+using FMIWebsiteAPI.Models.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
     public class JwtConfigurator : IJwtConfigurator
     {
-        private JwtConfiguration JwtConfiguration { get; set; }
-        public JwtConfiguration GetConfiguration() => JwtConfiguration;
+        public JwtConfiguration Configuration { get; private set; }
 
         public JwtConfigurator(JwtConfiguration jwtConfiguration)
         {
@@ -17,9 +16,9 @@ namespace FMIWebsiteAuthorizationAPI.API
         public TokenValidationParameters ValidationParameters => new TokenValidationParameters
         {
             ValidateIssuer = true,
-            ValidIssuer = JwtConfiguration.Issuer,
+            ValidIssuer = Configuration.Issuer,
             ValidateAudience = true,
-            ValidAudience = JwtConfiguration.Audience,
+            ValidAudience = Configuration.Audience,
             ValidateLifetime = true,
             RequireExpirationTime = true,
             IssuerSigningKey = GetSymmetricSecurityKey(),
@@ -28,13 +27,13 @@ namespace FMIWebsiteAuthorizationAPI.API
 
         public void SpecifyConfiguration(JwtConfiguration jwtConfiguration)
         {
-            JwtConfiguration = jwtConfiguration;
+            Configuration = jwtConfiguration;
         }
 
         public SigningCredentials GetSigningCredentials() =>
             new SigningCredentials(GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256Signature);
 
-        private byte[] GetByteKey() => Encoding.UTF8.GetBytes(JwtConfiguration.SecretKey);
+        private byte[] GetByteKey() => Encoding.UTF8.GetBytes(Configuration.SecretKey);
         private SymmetricSecurityKey GetSymmetricSecurityKey() => new SymmetricSecurityKey(GetByteKey());
     }
 }

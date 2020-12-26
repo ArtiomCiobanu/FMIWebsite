@@ -1,8 +1,9 @@
 using System;
 using FMIWebsiteAPI.Configuration;
+using FMIWebsiteAPI.Models.Authorization;
 using FMIWebsiteAPI.Models.Swagger;
+using FMIWebsiteAPI.Shared;
 using FMIWebsiteAuthorizationAPI.API;
-using FMIWebsiteAuthorizationAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,7 +29,8 @@ namespace FMIWebsiteAPI
         {
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(s =>
             {
-                var jwtConfiguration = Configuration.GetSection("JwtConfiguration").Get<JwtConfiguration>();
+                var jwtConfiguration = Configuration
+                    .GetSection(AppSettingsSections.JwtConfiguration).Get<JwtConfiguration>();
 
                 return new JwtConfigurator(jwtConfiguration);
             });
@@ -58,7 +60,9 @@ namespace FMIWebsiteAPI
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                var endpointConfiguration = Configuration.GetSection("SwaggerConfiguration").GetSection("Endpoints")
+                var endpointConfiguration = Configuration
+                    .GetSection(AppSettingsSections.SwaggerConfiguration)
+                    .GetSection(AppSettingsSections.SwaggerConfigurationEndpoints)
                     .Get<SwaggerEndpointConfiguration>();
 
                 options.SetEndpoint(endpointConfiguration);
