@@ -1,6 +1,7 @@
 # Common IntelliJ Platform excludes
 
 .idea
+/FMIWebsiteMainAPI/.idea
 
 # User specific
 /.idea//workspace.xml
