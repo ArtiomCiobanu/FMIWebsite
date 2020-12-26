@@ -1,6 +1,6 @@
 using System;
+using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Swagger;
-using FMIWebsiteAPI.StartupConfigurationTools;
 using FMIWebsiteAuthorizationAPI.API;
 using FMIWebsiteAuthorizationAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

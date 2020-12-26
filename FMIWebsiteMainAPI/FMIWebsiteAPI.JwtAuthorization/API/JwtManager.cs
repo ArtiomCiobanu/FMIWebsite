@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Shared;
 
 namespace FMIWebsiteAuthorizationAPI.API
 {
@@ -38,7 +39,7 @@ namespace FMIWebsiteAuthorizationAPI.API
             return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
-        public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, "ID");
+        public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, EndpointConstNames.UserIdClaim);
         public string GetUserRoleFromToken(string token) => GetUserDataFromToken(token, ClaimTypes.Role);
 
         public string GetUserDataFromToken(string token, string claimType)

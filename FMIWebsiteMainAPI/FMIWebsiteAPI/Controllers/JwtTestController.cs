@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
+using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Shared;
 using FMIWebsiteAuthorizationAPI.API;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +19,7 @@ namespace FMIWebsiteAPI.Controllers
         {
             JwtManager = jwtManager;
         }
-        
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public IActionResult AdminTest()
@@ -61,6 +64,15 @@ namespace FMIWebsiteAPI.Controllers
 
             var result = $"ID: {id}\nRole: {role}";
             return Ok(result);
+        }
+
+        [HttpGet]
+        public IActionResult GetUserId()
+        {
+            var user = User;
+            var id = user.Claims.Where(c => c.Type == EndpointConstNames.UserIdClaim);
+            
+            return Ok();
         }
     }
 }

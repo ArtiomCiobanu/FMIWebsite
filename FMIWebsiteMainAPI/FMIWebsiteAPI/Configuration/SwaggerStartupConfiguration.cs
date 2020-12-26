@@ -5,9 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace FMIWebsiteAPI.StartupConfigurationTools
+namespace FMIWebsiteAPI.Configuration
 {
-    public static class SwaggerConfigurationTools
+    public static class SwaggerStartupConfiguration
     {
         public static void AddConfiguredSwagger(this IServiceCollection services)
         {

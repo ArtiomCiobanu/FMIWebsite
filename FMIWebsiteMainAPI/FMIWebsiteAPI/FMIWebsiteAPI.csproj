@@ -17,6 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\FMIWebsiteAPI.JwtAuthorization\FMIWebsiteAPI.JwtAuthorization.csproj" />
       <ProjectReference Include="..\FMIWebsiteAPI.Models\FMIWebsiteAPI.Models.csproj" />
+      <ProjectReference Include="..\FMIWebsiteAPI.Shared\FMIWebsiteAPI.Shared.csproj" />
     </ItemGroup>
 
 
