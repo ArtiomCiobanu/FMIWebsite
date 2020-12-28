@@ -1,11 +1,12 @@
 ﻿using System;
 using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Models.Enums;
 
-namespace FMIWebsiteAPI.Database.Entities
+namespace FMIWebsiteAPI.DataAccess.Entities
 {
     public class User
     {
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public UserRole Role { get; set; }
         public string FullName { get; set; }
     }

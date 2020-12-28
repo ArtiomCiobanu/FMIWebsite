@@ -1,4 +1,4 @@
-﻿namespace FMIWebsiteAPI.Models.Accounts
+﻿namespace FMIWebsiteAPI.Models.Enums
 {
     public enum UserRole
     {

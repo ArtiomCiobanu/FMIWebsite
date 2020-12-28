@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAuthorizationAPI.Configurators;
 
