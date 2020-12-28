@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMIWebsiteAPI.Models", "FMI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMIWebsiteAPI.Shared", "FMIWebsiteAPI.Shared\FMIWebsiteAPI.Shared.csproj", "{C202751C-B9CD-4439-B9D3-A0844049076A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMIWebsiteAPI.Database", "FMIWebsiteAPI.Database\FMIWebsiteAPI.Database.csproj", "{2B3496C0-3674-430C-B456-6C8390A254DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FMIWebsiteAPI.UnitTests", "FMIWebsiteAPI.UnitTests\FMIWebsiteAPI.UnitTests.csproj", "{3E15E875-EB40-4A23-A721-E4A12E696119}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +40,13 @@ Global
 		{C202751C-B9CD-4439-B9D3-A0844049076A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C202751C-B9CD-4439-B9D3-A0844049076A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C202751C-B9CD-4439-B9D3-A0844049076A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B3496C0-3674-430C-B456-6C8390A254DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B3496C0-3674-430C-B456-6C8390A254DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B3496C0-3674-430C-B456-6C8390A254DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B3496C0-3674-430C-B456-6C8390A254DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E15E875-EB40-4A23-A721-E4A12E696119}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E15E875-EB40-4A23-A721-E4A12E696119}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E15E875-EB40-4A23-A721-E4A12E696119}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E15E875-EB40-4A23-A721-E4A12E696119}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
