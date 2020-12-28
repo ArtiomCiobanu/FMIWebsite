@@ -1,7 +1,7 @@
 ﻿using FMIWebsiteAPI.Models.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FMIWebsiteAuthorizationAPI.API
+namespace FMIWebsiteAuthorizationAPI.Configurators
 {
     public interface IJwtConfigurator
     {

@@ -1,5 +1,4 @@
 ﻿using FMIWebsiteAPI.Models.Accounts;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers

@@ -3,7 +3,8 @@ using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Authorization;
 using FMIWebsiteAPI.Models.Swagger;
 using FMIWebsiteAPI.Shared.Consts;
-using FMIWebsiteAuthorizationAPI.API;
+using FMIWebsiteAuthorizationAPI.Configurators;
+using FMIWebsiteAuthorizationAPI.Handlers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +35,7 @@ namespace FMIWebsiteAPI
 
                 return new JwtConfigurator(jwtConfiguration);
             });
-            services.AddSingleton<IJwtManager, JwtManager>();
+            services.AddSingleton<IJwtHandler, JwtHandler>();
 
             services.AddAuthentication(options =>
             {
