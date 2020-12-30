@@ -1,5 +1,4 @@
 ﻿using System;
-using FMIWebsiteAPI.Models.Accounts;
 using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;

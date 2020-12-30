@@ -1,4 +1,4 @@
-﻿using FMIWebsiteAPI.Models.Accounts;
+﻿using FMIWebsiteAPI.Models.Dto.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers

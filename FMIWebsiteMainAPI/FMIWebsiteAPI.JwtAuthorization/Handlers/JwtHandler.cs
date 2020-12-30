@@ -1,10 +1,6 @@
-﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using FMIWebsiteAPI.Models.Accounts;
+﻿using System.IdentityModel.Tokens.Jwt;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;
-using FMIWebsiteAuthorizationAPI.Configurators;
 
 namespace FMIWebsiteAuthorizationAPI.Handlers
 {

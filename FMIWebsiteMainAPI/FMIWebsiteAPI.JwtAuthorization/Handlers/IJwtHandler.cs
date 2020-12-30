@@ -1,6 +1,3 @@
-using System;
-using FMIWebsiteAPI.Models.Accounts;
-
 namespace FMIWebsiteAuthorizationAPI.Handlers
 {
     public interface IJwtHandler
