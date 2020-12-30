@@ -4,6 +4,7 @@ using FMIWebsiteAPI.Models.Authorization;
 using FMIWebsiteAPI.Models.Swagger;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAuthorizationAPI.Configurators;
+using FMIWebsiteAuthorizationAPI.Generators;
 using FMIWebsiteAuthorizationAPI.Handlers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +29,7 @@ namespace FMIWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
