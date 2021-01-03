@@ -1,22 +1,21 @@
-﻿using FMIWebsiteAPI.Models.Accounts;
-using Microsoft.AspNetCore.Authorization;
+﻿using FMIWebsiteAPI.Models.Dto.Accounts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("accounts")]
     public class AccountsController : ControllerBase
     {
         [HttpPost]
-        [Route("LogIn")]
+        [Route("login")]
         public ActionResult<string> LogIn([FromBody] AccountAuthenticationModel model)
         {
             return Ok();
         }
 
         [HttpPost]
-        [Route("Register")]
+        [Route("register")]
         public ActionResult<string> Register()
         {
             return Ok();

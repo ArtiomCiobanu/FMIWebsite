@@ -20,7 +20,7 @@ namespace FMIWebsiteAPI.Configuration
                     Name = HeaderNames.Authorization,
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = SchemeNames.Bearer
+                    Scheme = Schemes.Bearer
                 };
                 options.AddSecurityDefinition(securityScheme.Scheme, securityScheme);
 
@@ -34,7 +34,7 @@ namespace FMIWebsiteAPI.Configuration
                                 Type = ReferenceType.SecurityScheme,
                                 Id = securityScheme.Scheme
                             },
-                            Scheme = SchemeNames.OAuth,
+                            Scheme = Schemes.OAuth,
                             Name = securityScheme.Scheme,
                             In = securityScheme.In
                         },

@@ -2,7 +2,7 @@
 using FMIWebsiteAPI.Models.Authorization;
 using Microsoft.IdentityModel.Tokens;
 
-namespace FMIWebsiteAuthorizationAPI.API
+namespace FMIWebsiteAuthorizationAPI.Configurators
 {
     public class JwtConfigurator : IJwtConfigurator
     {
@@ -13,7 +13,7 @@ namespace FMIWebsiteAuthorizationAPI.API
             Configuration = jwtConfiguration;
         }
 
-        public TokenValidationParameters ValidationParameters => new TokenValidationParameters
+        public TokenValidationParameters ValidationParameters => new()
         {
             ValidateIssuer = true,
             ValidIssuer = Configuration.Issuer,

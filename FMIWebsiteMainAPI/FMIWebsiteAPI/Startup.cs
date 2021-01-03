@@ -1,9 +1,13 @@
 using System;
+using FMIWebsiteAPI.API.Extensions;
 using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Authorization;
+using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Models.Swagger;
 using FMIWebsiteAPI.Shared.Consts;
-using FMIWebsiteAuthorizationAPI.API;
+using FMIWebsiteAuthorizationAPI.Configurators;
+using FMIWebsiteAuthorizationAPI.Generators;
+using FMIWebsiteAuthorizationAPI.Handlers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +31,7 @@ namespace FMIWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
@@ -34,7 +39,7 @@ namespace FMIWebsiteAPI
 
                 return new JwtConfigurator(jwtConfiguration);
             });
-            services.AddSingleton<IJwtManager, JwtManager>();
+            services.AddSingleton<IJwtHandler, JwtHandler>();
 
             services.AddAuthentication(options =>
             {
@@ -47,6 +52,14 @@ namespace FMIWebsiteAPI
                 options.RequireHttpsMetadata = true;
                 options.TokenValidationParameters = jwtConfigurator?.ValidationParameters;
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    PolicyNames.RequireAdministratorRole,
+                    policy => policy.RequireUserRole(UserRole.Admin));
+            });
+
             services.AddControllers();
 
             services.AddConfiguredSwagger();

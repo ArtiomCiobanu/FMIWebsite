@@ -1,17 +1,17 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
-using FMIWebsiteAPI.Shared.Extentions;
+using FMIWebsiteAuthorizationAPI.Configurators;
 
-namespace FMIWebsiteAuthorizationAPI.API
+namespace FMIWebsiteAuthorizationAPI.Generators
 {
-    public class JwtManager : IJwtManager
+    public class JwtGenerator : IJwtGenerator
     {
         private IJwtConfigurator JwtConfigurator { get; }
 
-        public JwtManager(IJwtConfigurator jwtConfigurator)
+        public JwtGenerator(IJwtConfigurator jwtConfigurator)
         {
             JwtConfigurator = jwtConfigurator;
         }
@@ -36,17 +36,6 @@ namespace FMIWebsiteAuthorizationAPI.API
                 signingCredentials);
 
             return new JwtSecurityTokenHandler().WriteToken(jwt);
-        }
-
-        public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserId);
-        public string GetUserRoleFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserRole);
-
-        public string GetUserDataFromToken(string token, string claimType)
-        {
-            var jwt = (JwtSecurityToken) new JwtSecurityTokenHandler().ReadToken(token);
-
-            var result = jwt.Claims.GetClaim(claimType);
-            return result.Value;
         }
     }
 }

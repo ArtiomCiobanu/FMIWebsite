@@ -1,8 +1,9 @@
 ﻿using System;
-using FMIWebsiteAPI.Models.Accounts;
+using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;
-using FMIWebsiteAuthorizationAPI.API;
+using FMIWebsiteAuthorizationAPI.Generators;
+using FMIWebsiteAuthorizationAPI.Handlers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,15 +13,17 @@ namespace FMIWebsiteAPI.Controllers
     [Route("[controller]/[action]")]
     public class JwtTestController : ControllerBase
     {
-        private IJwtManager JwtManager { get; }
+        private IJwtHandler JwtHandler { get; }
+        private IJwtGenerator JwtGenerator { get; }
 
-        public JwtTestController(IJwtManager jwtManager)
+        public JwtTestController(IJwtHandler jwtHandler, IJwtGenerator jwtGenerator)
         {
-            JwtManager = jwtManager;
+            JwtHandler = jwtHandler;
+            JwtGenerator = jwtGenerator;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = PolicyNames.RequireAdministratorRole)]
         public IActionResult AdminTest()
         {
             return Ok("You're an admin!");
@@ -34,32 +37,28 @@ namespace FMIWebsiteAPI.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult AnonymousTest()
         {
             return Ok("Hi!");
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetUserToken()
         {
-            return Ok(JwtManager.GenerateToken(Guid.NewGuid(), UserRole.User));
+            return Ok(JwtGenerator.GenerateToken(Guid.NewGuid(), UserRole.User));
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetAdminToken()
         {
-            return Ok(JwtManager.GenerateToken(Guid.NewGuid(), UserRole.Admin));
+            return Ok(JwtGenerator.GenerateToken(Guid.NewGuid(), UserRole.Admin));
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetTokenData(string token)
         {
-            var id = JwtManager.GetUserIdFromToken(token);
-            var role = JwtManager.GetUserRoleFromToken(token);
+            var id = JwtHandler.GetUserIdFromToken(token);
+            var role = JwtHandler.GetUserRoleFromToken(token);
 
             var result = $"ID: {id}\nRole: {role}";
             return Ok(result);

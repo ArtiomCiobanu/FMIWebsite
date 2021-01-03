@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FMIWebsiteAPI.Models.Accounts
+namespace FMIWebsiteAPI.Models.Dto.Accounts
 {
     public class AccountAuthenticationModel
     {
