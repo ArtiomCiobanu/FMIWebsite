@@ -57,6 +57,28 @@ paths:
                   type: string
                 Full Name:
                   type: string
+  /accounts/get_account:
+    parameters: []
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  userId:
+                    type: string
+                  FullName:
+                    type: string
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized
+      operationId: get-accounts-accountId
 components:
   schemas:
     User:
