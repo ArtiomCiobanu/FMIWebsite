@@ -1,6 +1,8 @@
 using System;
+using FMIWebsiteAPI.API.Extensions;
 using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Authorization;
+using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Models.Swagger;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAuthorizationAPI.Configurators;
@@ -50,6 +52,14 @@ namespace FMIWebsiteAPI
                 options.RequireHttpsMetadata = true;
                 options.TokenValidationParameters = jwtConfigurator?.ValidationParameters;
             });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    PolicyNames.RequireAdministratorRole,
+                    policy => policy.RequireUserRole(UserRole.Admin));
+            });
+
             services.AddControllers();
 
             services.AddConfiguredSwagger();

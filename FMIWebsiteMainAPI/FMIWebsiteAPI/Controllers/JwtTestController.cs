@@ -1,10 +1,10 @@
 ﻿using System;
-using FMIWebsiteAPI.API.Attributes;
 using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;
 using FMIWebsiteAuthorizationAPI.Generators;
 using FMIWebsiteAuthorizationAPI.Handlers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers
@@ -23,14 +23,14 @@ namespace FMIWebsiteAPI.Controllers
         }
 
         [HttpGet]
-        [AuthorizeUser(UserRole.Admin)]
+        [Authorize(Policy = PolicyNames.RequireAdministratorRole)]
         public IActionResult AdminTest()
         {
             return Ok("You're an admin!");
         }
 
         [HttpGet]
-        [AuthorizeUser]
+        [Authorize]
         public IActionResult AuthorizeTest()
         {
             return Ok("You are authorized!");
