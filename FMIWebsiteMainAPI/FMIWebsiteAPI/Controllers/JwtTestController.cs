@@ -1,10 +1,10 @@
 ﻿using System;
+using FMIWebsiteAPI.API.Attributes;
 using FMIWebsiteAPI.Models.Enums;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;
 using FMIWebsiteAuthorizationAPI.Generators;
 using FMIWebsiteAuthorizationAPI.Handlers;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers
@@ -23,42 +23,38 @@ namespace FMIWebsiteAPI.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [AuthorizeUser(UserRole.Admin)]
         public IActionResult AdminTest()
         {
             return Ok("You're an admin!");
         }
 
         [HttpGet]
-        [Authorize]
+        [AuthorizeUser]
         public IActionResult AuthorizeTest()
         {
             return Ok("You are authorized!");
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult AnonymousTest()
         {
             return Ok("Hi!");
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetUserToken()
         {
             return Ok(JwtGenerator.GenerateToken(Guid.NewGuid(), UserRole.User));
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetAdminToken()
         {
             return Ok(JwtGenerator.GenerateToken(Guid.NewGuid(), UserRole.Admin));
         }
 
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult GetTokenData(string token)
         {
             var id = JwtHandler.GetUserIdFromToken(token);
