@@ -1,4 +1,6 @@
 using System;
+using System.Reflection;
+using FluentValidation.AspNetCore;
 using FMIWebsiteAPI.API.Extensions;
 using FMIWebsiteAPI.Configuration;
 using FMIWebsiteAPI.Models.Authorization;
@@ -60,7 +62,10 @@ namespace FMIWebsiteAPI
                     policy => policy.RequireUserRole(UserRole.Admin));
             });
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddFluentValidation(c =>
+                    c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 
             services.AddConfiguredSwagger();
         }

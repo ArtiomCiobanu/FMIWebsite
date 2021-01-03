@@ -1,4 +1,8 @@
-﻿using FMIWebsiteAPI.Models.Dto.Accounts;
+﻿using System;
+using FMIWebsiteAPI.Models.Dto.Accounts;
+using FMIWebsiteAPI.Shared.Consts;
+using FMIWebsiteAPI.Shared.Extentions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FMIWebsiteAPI.Controllers
@@ -19,6 +23,16 @@ namespace FMIWebsiteAPI.Controllers
         public ActionResult<string> Register()
         {
             return Ok();
+        }
+
+        [HttpGet]
+        [Route("/get_account")]
+        [Authorize]
+        public ActionResult<Guid> GetAccountData()
+        {
+            var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
+
+            return Ok(id);
         }
     }
 }
