@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FMIWebsiteAPI.Models.Dto.Accounts;
 using FMIWebsiteAPI.Shared.Consts;
 using FMIWebsiteAPI.Shared.Extentions;
