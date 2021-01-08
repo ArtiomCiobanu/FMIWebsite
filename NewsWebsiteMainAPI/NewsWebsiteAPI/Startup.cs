@@ -55,12 +55,8 @@ namespace NewsWebsiteAPI
                 options.TokenValidationParameters = jwtConfigurator?.ValidationParameters;
             });
 
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(
-                    PolicyNames.RequireAdministratorRole,
-                    policy => policy.RequireUserRole(UserRole.Admin));
-            });
+            services.AddAuthorization(
+                options => { options.AddRequireAdministratorRolePolicy(); });
 
             services
                 .AddControllers()
