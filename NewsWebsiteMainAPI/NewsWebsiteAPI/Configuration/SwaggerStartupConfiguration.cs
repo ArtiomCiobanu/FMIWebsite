@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using NewsWebsiteAPI.Models.Swagger;
@@ -43,6 +44,19 @@ namespace NewsWebsiteAPI.Configuration
                 };
 
                 options.AddSecurityRequirement(requirement);
+            });
+        }
+
+        public static void AddConfiguredSwaggerUI(this IApplicationBuilder app, IConfiguration configuration)
+        {
+            app.UseSwaggerUI(options =>
+            {
+                var endpointConfiguration = configuration
+                    .GetSection(SettingsSections.SwaggerConfiguration)
+                    .GetSection(SettingsSections.SwaggerConfigurationEndpoints)
+                    .Get<SwaggerEndpointConfiguration>();
+
+                options.SetEndpoint(endpointConfiguration);
             });
         }
 

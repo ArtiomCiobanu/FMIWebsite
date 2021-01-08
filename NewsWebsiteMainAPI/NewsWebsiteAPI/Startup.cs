@@ -13,7 +13,6 @@ using NewsWebsiteAPI.JwtAuthorization.Configurators;
 using NewsWebsiteAPI.JwtAuthorization.Generators;
 using NewsWebsiteAPI.JwtAuthorization.Handlers;
 using NewsWebsiteAPI.Models.Authorization;
-using NewsWebsiteAPI.Models.Swagger;
 using NewsWebsiteAPI.Shared.Consts;
 
 namespace NewsWebsiteAPI
@@ -71,15 +70,7 @@ namespace NewsWebsiteAPI
             ServiceProvider = app.ApplicationServices;
 
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                var endpointConfiguration = Configuration
-                    .GetSection(SettingsSections.SwaggerConfiguration)
-                    .GetSection(SettingsSections.SwaggerConfigurationEndpoints)
-                    .Get<SwaggerEndpointConfiguration>();
-
-                options.SetEndpoint(endpointConfiguration);
-            });
+            app.AddConfiguredSwaggerUI(Configuration);
 
             if (env.IsDevelopment())
             {
