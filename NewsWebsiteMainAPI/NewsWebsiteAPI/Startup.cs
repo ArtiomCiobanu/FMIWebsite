@@ -13,7 +13,6 @@ using NewsWebsiteAPI.JwtAuthorization.Configurators;
 using NewsWebsiteAPI.JwtAuthorization.Generators;
 using NewsWebsiteAPI.JwtAuthorization.Handlers;
 using NewsWebsiteAPI.Models.Authorization;
-using NewsWebsiteAPI.Models.Enums;
 using NewsWebsiteAPI.Models.Swagger;
 using NewsWebsiteAPI.Shared.Consts;
 
@@ -33,7 +32,6 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
@@ -41,6 +39,7 @@ namespace NewsWebsiteAPI
 
                 return new JwtConfigurator(jwtConfiguration);
             });
+            services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtHandler, JwtHandler>();
 
             services.AddAuthentication(options =>
