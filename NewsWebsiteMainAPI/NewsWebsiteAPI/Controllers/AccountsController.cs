@@ -26,7 +26,7 @@ namespace NewsWebsiteAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/get_account")]
+        [Route("get_account")]
         [Authorize]
         public ActionResult<Guid> GetAccountData()
         {
