@@ -2,7 +2,7 @@
 
 namespace NewsWebsiteAPI.Models.Dto.Accounts
 {
-    public class AccountAuthenticationModel
+    public class AuthenticationModel
     {
         [Required]
         [EmailAddress]

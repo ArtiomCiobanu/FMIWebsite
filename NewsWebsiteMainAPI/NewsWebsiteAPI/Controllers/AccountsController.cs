@@ -13,20 +13,20 @@ namespace NewsWebsiteAPI.Controllers
     {
         [HttpPost]
         [Route("login")]
-        public ActionResult<string> LogIn([FromBody] AccountAuthenticationModel model)
+        public ActionResult<string> LogIn([FromBody] AuthenticationModel model)
         {
             return Ok();
         }
 
         [HttpPost]
         [Route("register")]
-        public ActionResult<string> Register()
+        public ActionResult<string> Register([FromBody]RegistrationModel model)
         {
             return Ok();
         }
 
         [HttpGet]
-        [Route("/get_account")]
+        [Route("get_account")]
         [Authorize]
         public ActionResult<Guid> GetAccountData()
         {

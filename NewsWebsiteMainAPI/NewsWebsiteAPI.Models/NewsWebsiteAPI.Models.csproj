@@ -8,6 +8,11 @@
 
     <ItemGroup>
       <Folder Include="Dto" />
+      <Folder Include="MappingProfiles" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="10.1.1" />
     </ItemGroup>
 
 </Project>
