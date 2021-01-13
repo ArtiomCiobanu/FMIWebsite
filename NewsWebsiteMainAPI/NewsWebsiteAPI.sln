@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.UnitTests", "NewsWebsiteAPI.UnitTests\NewsWebsiteAPI.UnitTests.csproj", "{3E15E875-EB40-4A23-A721-E4A12E696119}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.Infrastructure", "NewsWebsiteAPI.Infrastructure\NewsWebsiteAPI.Infrastructure.csproj", "{BF4C7D5A-E19F-4FC3-9768-1EDFE75BA933}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{3E15E875-EB40-4A23-A721-E4A12E696119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E15E875-EB40-4A23-A721-E4A12E696119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E15E875-EB40-4A23-A721-E4A12E696119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4C7D5A-E19F-4FC3-9768-1EDFE75BA933}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4C7D5A-E19F-4FC3-9768-1EDFE75BA933}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4C7D5A-E19F-4FC3-9768-1EDFE75BA933}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4C7D5A-E19F-4FC3-9768-1EDFE75BA933}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
