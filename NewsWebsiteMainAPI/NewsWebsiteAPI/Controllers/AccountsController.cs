@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extentions;
+using AppClaimTypes = NewsWebsiteAPI.Consts.AppClaimTypes;
 
 namespace NewsWebsiteAPI.Controllers
 {

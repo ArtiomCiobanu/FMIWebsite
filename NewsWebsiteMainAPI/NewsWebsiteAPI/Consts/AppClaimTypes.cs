@@ -1,7 +1,7 @@
 ﻿
 using System.Security.Claims;
 
-namespace NewsWebsiteAPI.Shared.Consts
+namespace NewsWebsiteAPI.Consts
 {
     public static class AppClaimTypes
     {

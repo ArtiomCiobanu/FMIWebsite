@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Shared.Consts
+﻿namespace NewsWebsiteAPI.Consts
 {
     public static class HeaderNames
     {

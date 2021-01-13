@@ -6,6 +6,9 @@ using Microsoft.OpenApi.Models;
 using NewsWebsiteAPI.Models.Swagger;
 using NewsWebsiteAPI.Shared.Consts;
 using Swashbuckle.AspNetCore.SwaggerUI;
+using HeaderNames = NewsWebsiteAPI.Consts.HeaderNames;
+using Schemes = NewsWebsiteAPI.Consts.Schemes;
+using SettingsSections = NewsWebsiteAPI.Consts.SettingsSections;
 
 namespace NewsWebsiteAPI.Configuration
 {

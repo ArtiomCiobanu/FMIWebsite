@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using NewsWebsiteAPI.Models.Enums;
 
-namespace NewsWebsiteAPI.API.Extensions
+namespace NewsWebsiteAPI.Extentions
 {
     public static class AuthorizationPolicyExtensions
     {
