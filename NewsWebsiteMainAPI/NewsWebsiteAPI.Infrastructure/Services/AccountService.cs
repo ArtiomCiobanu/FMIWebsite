@@ -15,13 +15,11 @@ namespace NewsWebsiteAPI.Infrastructure.Services
 
         public ResultBase Register(RegistrationModel registrationModel)
         {
-            if (AccountRepository.ExistsWithEmail(registrationModel.Email))
-            {
-                AccountRepository.CreateUser();
-                return Result.Success();
-            }
-
-            return Result.Fail("The user already exists!");
+            if (!AccountRepository.ExistsWithEmail(registrationModel.Email))
+                return Result.Fail("The user already exists!");
+            
+            AccountRepository.CreateUser();
+            return Result.Success();
         }
 
         public void LogIn()

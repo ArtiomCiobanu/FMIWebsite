@@ -6,7 +6,7 @@ namespace NewsWebsiteAPI.Controllers.Base
 {
     public class BaseController : ControllerBase
     {
-        public IActionResult ExecuteAction(
+        /*public IActionResult ExecuteAction(
             Func<ResultBase> action,
             Func<ResultBase, IActionResult> successResult,
             Func<ResultBase, IActionResult> failResult)
@@ -14,6 +14,6 @@ namespace NewsWebsiteAPI.Controllers.Base
             var result = action();
 
             return result.Succeeded ? successResult(result) : failResult(result);
-        }
+        }*/
     }
 }

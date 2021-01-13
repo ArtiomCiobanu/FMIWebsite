@@ -4,14 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.Infrastructure.Services;
 using NewsWebsiteAPI.Models.Dto.Accounts;
+using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extentions;
-using AppClaimTypes = NewsWebsiteAPI.Consts.AppClaimTypes;
 
 namespace NewsWebsiteAPI.Controllers
 {
     [ApiController]
     [Route("accounts")]
-    public class AccountsController : BaseController
+    public class AccountsController : ControllerBase
     {
         private IAccountService AccountService { get; }
 
@@ -30,11 +30,13 @@ namespace NewsWebsiteAPI.Controllers
         [HttpPost]
         [Route("register")]
         public IActionResult Register([FromBody] RegistrationModel model)
-            => ExecuteAction(
-                () => AccountService.Register(model),
-                Ok,
-                Conflict);
-
+        {
+            return null;
+        }
+        /* => ExecuteAction(
+             () => AccountService.Register(model),
+             Ok,
+             Conflict);*/
 
         [HttpGet]
         [Route("get_account")]
