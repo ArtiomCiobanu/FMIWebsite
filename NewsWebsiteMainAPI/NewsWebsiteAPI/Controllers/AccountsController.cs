@@ -11,7 +11,7 @@ namespace NewsWebsiteAPI.Controllers
 {
     [ApiController]
     [Route("accounts")]
-    public class AccountsController : ControllerBase
+    public class AccountsController : BaseController
     {
         private IAccountService AccountService { get; }
 
@@ -30,13 +30,10 @@ namespace NewsWebsiteAPI.Controllers
         [HttpPost]
         [Route("register")]
         public IActionResult Register([FromBody] RegistrationModel model)
-        {
-            return null;
-        }
-        /* => ExecuteAction(
-             () => AccountService.Register(model),
-             Ok,
-             Conflict);*/
+            => ExecuteAction(
+                () => AccountService.Register(model),
+                Ok,
+                Conflict);
 
         [HttpGet]
         [Route("get_account")]

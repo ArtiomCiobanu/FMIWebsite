@@ -2,11 +2,17 @@
 {
     public class Result : ResultBase
     {
-        
         public static Result Success() =>
             new()
             {
                 Succeeded = true
+            };
+
+        public static Result Success(string message) =>
+            new()
+            {
+                Succeeded = true,
+                Message = message
             };
 
         public static Result Fail() =>

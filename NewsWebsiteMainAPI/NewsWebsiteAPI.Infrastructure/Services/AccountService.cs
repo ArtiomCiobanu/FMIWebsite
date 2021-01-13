@@ -19,7 +19,7 @@ namespace NewsWebsiteAPI.Infrastructure.Services
                 return Result.Fail("The user already exists!");
             
             AccountRepository.CreateUser();
-            return Result.Success();
+            return Result.Success("Created");
         }
 
         public void LogIn()
