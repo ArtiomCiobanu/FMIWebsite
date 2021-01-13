@@ -8,12 +8,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
-using NewsWebsiteAPI.Extentions;
+using NewsWebsiteAPI.Extensions;
 using NewsWebsiteAPI.JwtAuthorization.Configurators;
 using NewsWebsiteAPI.JwtAuthorization.Generators;
 using NewsWebsiteAPI.JwtAuthorization.Handlers;
 using NewsWebsiteAPI.Models.Authorization;
-using NewsWebsiteAPI.Shared.Consts;
 using SettingsSections = NewsWebsiteAPI.Consts.SettingsSections;
 
 namespace NewsWebsiteAPI

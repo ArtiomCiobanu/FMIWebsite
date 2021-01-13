@@ -2,7 +2,7 @@
 using NewsWebsiteAPI.Consts;
 using NewsWebsiteAPI.Models.Enums;
 
-namespace NewsWebsiteAPI.Extentions
+namespace NewsWebsiteAPI.Extensions
 {
     public static class AuthorizationOptionsExtensions
     {

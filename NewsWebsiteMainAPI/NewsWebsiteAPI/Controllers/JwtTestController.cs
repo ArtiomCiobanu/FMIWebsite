@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.JwtAuthorization.Generators;
 using NewsWebsiteAPI.JwtAuthorization.Handlers;
 using NewsWebsiteAPI.Models.Enums;
-using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extentions;
 using AppClaimTypes = NewsWebsiteAPI.Consts.AppClaimTypes;
 using PolicyNames = NewsWebsiteAPI.Consts.PolicyNames;

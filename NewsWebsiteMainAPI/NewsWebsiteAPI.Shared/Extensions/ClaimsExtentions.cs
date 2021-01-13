@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace NewsWebsiteAPI.Extentions
+namespace NewsWebsiteAPI.Shared.Extentions
 {
     public static class ClaimsExtentions
     {

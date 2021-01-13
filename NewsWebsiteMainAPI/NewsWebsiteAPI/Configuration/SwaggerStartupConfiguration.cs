@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using NewsWebsiteAPI.Models.Swagger;
-using NewsWebsiteAPI.Shared.Consts;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using HeaderNames = NewsWebsiteAPI.Consts.HeaderNames;
 using Schemes = NewsWebsiteAPI.Consts.Schemes;
