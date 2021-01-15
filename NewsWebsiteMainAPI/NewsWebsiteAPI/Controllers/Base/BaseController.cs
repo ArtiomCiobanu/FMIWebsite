@@ -8,7 +8,7 @@ namespace NewsWebsiteAPI.Controllers.Base
 {
     public class BaseController : ControllerBase
     {
-        protected IActionResult ExecuteAction(Func<ResultBase> action)
+        protected IActionResult ExecuteAction(Func<IResult> action)
         {
             var result = action();
 

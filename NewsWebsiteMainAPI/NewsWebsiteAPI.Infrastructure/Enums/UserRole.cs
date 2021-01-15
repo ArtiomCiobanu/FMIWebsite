@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Models.Enums
+﻿namespace NewsWebsiteAPI.Infrastructure.Enums
 {
     public enum UserRole
     {

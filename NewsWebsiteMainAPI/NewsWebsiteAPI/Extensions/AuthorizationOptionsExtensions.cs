@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using NewsWebsiteAPI.Consts;
-using NewsWebsiteAPI.Models.Enums;
+using NewsWebsiteAPI.Infrastructure.Enums;
 
 namespace NewsWebsiteAPI.Extensions
 {

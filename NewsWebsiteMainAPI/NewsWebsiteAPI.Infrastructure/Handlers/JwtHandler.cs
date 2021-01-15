@@ -1,8 +1,8 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extentions;
+using NewsWebsiteAPI.Shared.Extensions;
 
-namespace NewsWebsiteAPI.JwtAuthorization.Handlers
+namespace NewsWebsiteAPI.Infrastructure.Handlers
 {
     public class JwtHandler : IJwtHandler
     {

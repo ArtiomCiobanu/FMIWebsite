@@ -5,7 +5,7 @@ using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.Infrastructure.Services;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extentions;
+using NewsWebsiteAPI.Shared.Extensions;
 
 namespace NewsWebsiteAPI.Controllers
 {

@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI", "NewsWebsi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.Identity", "NewsWebsiteAPI.Identity\NewsWebsiteAPI.Identity.csproj", "{94D34C49-A498-4526-A4AD-8DEED428F37D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.JwtAuthorization", "NewsWebsiteAPI.JwtAuthorization\NewsWebsiteAPI.JwtAuthorization.csproj", "{2E097BE3-0B45-4E3D-B725-26387DB13790}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.Models", "NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj", "{0147FE78-87FD-400B-A4A4-049BAF61418F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewsWebsiteAPI.DataAccess", "NewsWebsiteAPI.DataAccess\NewsWebsiteAPI.DataAccess.csproj", "{2B3496C0-3674-430C-B456-6C8390A254DA}"
@@ -30,10 +28,6 @@ Global
 		{94D34C49-A498-4526-A4AD-8DEED428F37D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94D34C49-A498-4526-A4AD-8DEED428F37D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94D34C49-A498-4526-A4AD-8DEED428F37D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E097BE3-0B45-4E3D-B725-26387DB13790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E097BE3-0B45-4E3D-B725-26387DB13790}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E097BE3-0B45-4E3D-B725-26387DB13790}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E097BE3-0B45-4E3D-B725-26387DB13790}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0147FE78-87FD-400B-A4A4-049BAF61418F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0147FE78-87FD-400B-A4A4-049BAF61418F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0147FE78-87FD-400B-A4A4-049BAF61418F}.Release|Any CPU.ActiveCfg = Release|Any CPU

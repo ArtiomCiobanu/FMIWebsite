@@ -1,7 +1,7 @@
 ﻿using System;
-using NewsWebsiteAPI.Models.Enums;
+using NewsWebsiteAPI.Infrastructure.Enums;
 
-namespace NewsWebsiteAPI.JwtAuthorization.Generators
+namespace NewsWebsiteAPI.Infrastructure.Generators
 {
     public interface IJwtGenerator
     {

@@ -1,5 +1,5 @@
 ﻿using System;
-using NewsWebsiteAPI.Models.Enums;
+using NewsWebsiteAPI.Infrastructure.Enums;
 
 namespace NewsWebsiteAPI.DataAccess.Entities
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NewsWebsiteAPI.JwtAuthorization.Generators;
-using NewsWebsiteAPI.JwtAuthorization.Handlers;
-using NewsWebsiteAPI.Models.Enums;
+using NewsWebsiteAPI.Infrastructure.Enums;
+using NewsWebsiteAPI.Infrastructure.Generators;
+using NewsWebsiteAPI.Infrastructure.Handlers;
 using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extentions;
+using NewsWebsiteAPI.Shared.Extensions;
 using PolicyNames = NewsWebsiteAPI.Consts.PolicyNames;
 
 namespace NewsWebsiteAPI.Controllers

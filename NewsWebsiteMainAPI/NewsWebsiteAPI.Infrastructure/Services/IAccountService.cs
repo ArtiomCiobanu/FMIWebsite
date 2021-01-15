@@ -5,7 +5,7 @@ namespace NewsWebsiteAPI.Infrastructure.Services
 {
     public interface IAccountService
     {
-        public ResultBase Register(RegistrationModel registrationModel);
+        public IResult Register(RegistrationModel registrationModel);
         public void LogIn();
     }
 }

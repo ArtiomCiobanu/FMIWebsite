@@ -2,8 +2,10 @@
 
 namespace NewsWebsiteAPI.Infrastructure.Results
 {
-    public class Result : ResultBase
+    public class Result : IResult
     {
+        public ResponseStatus Status { get; set; }
+
         public string Message { get; set; }
 
         public static Result Success() =>

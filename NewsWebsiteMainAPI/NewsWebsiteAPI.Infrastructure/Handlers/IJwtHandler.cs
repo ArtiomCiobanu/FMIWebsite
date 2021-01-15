@@ -1,4 +1,4 @@
-namespace NewsWebsiteAPI.JwtAuthorization.Handlers
+namespace NewsWebsiteAPI.Infrastructure.Handlers
 {
     public interface IJwtHandler
     {

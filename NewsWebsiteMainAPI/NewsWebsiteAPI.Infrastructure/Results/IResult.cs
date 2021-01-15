@@ -2,7 +2,7 @@
 
 namespace NewsWebsiteAPI.Infrastructure.Results
 {
-    public class ResultBase
+    public interface IResult
     {
         public ResponseStatus Status { get; set; }
     }
