@@ -22,13 +22,13 @@ namespace NewsWebsiteAPI.Infrastructure.Results
         public static Result Fail() =>
             new()
             {
-                Status = ResponseStatus.Failed
+                Status = ResponseStatus.InternalServerError
             };
 
         public static Result Fail(string message) =>
             new()
             {
-                Status = ResponseStatus.Failed,
+                Status = ResponseStatus.InternalServerError,
                 Message = message
             };
     }

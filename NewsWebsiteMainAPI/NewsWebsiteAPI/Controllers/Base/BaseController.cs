@@ -14,7 +14,7 @@ namespace NewsWebsiteAPI.Controllers.Base
 
             IActionResult response = result.Status switch
             {
-                ResponseStatus.Failed => StatusCode(StatusCodes.Status500InternalServerError),
+                ResponseStatus.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError),
                 ResponseStatus.Success => Ok(result),
                 ResponseStatus.BadRequest => BadRequest(result),
                 ResponseStatus.Conflict => Conflict(result),
