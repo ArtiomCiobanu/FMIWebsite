@@ -18,7 +18,7 @@ namespace NewsWebsiteAPI.Infrastructure.Services
             if (!AccountRepository.ExistsWithEmail(registrationModel.Email))
                 return Result.Fail("The user already exists!");
             
-            AccountRepository.CreateUser();
+            AccountRepository.CreateUser(registrationModel);
             return Result.Success("Created");
         }
 

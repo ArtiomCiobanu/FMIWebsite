@@ -15,5 +15,12 @@ namespace NewsWebsiteAPI.Controllers.Base
 
             return result.Succeeded ? successResult(result) : failResult(result);
         }
+
+        protected IActionResult ExecuteAction(Func<ResultBase> action)
+        {
+            var result = action();
+
+            return null;
+        }
     }
 }

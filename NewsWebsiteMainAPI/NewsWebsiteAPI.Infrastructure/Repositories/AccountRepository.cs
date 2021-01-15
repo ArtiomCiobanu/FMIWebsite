@@ -1,4 +1,6 @@
-﻿namespace NewsWebsiteAPI.Infrastructure.Repositories
+﻿using NewsWebsiteAPI.Models.Dto.Accounts;
+
+namespace NewsWebsiteAPI.Infrastructure.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
@@ -7,7 +9,7 @@
             return true;
         }
 
-        public void CreateUser()
+        public void CreateUser(RegistrationModel registrationModel)
         {
         }
     }
