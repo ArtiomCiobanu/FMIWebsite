@@ -31,9 +31,7 @@ namespace NewsWebsiteAPI.Controllers
         [Route("register")]
         public IActionResult Register([FromBody] RegistrationModel model)
             => ExecuteAction(
-                () => AccountService.Register(model),
-                Ok,
-                Conflict);
+                () => AccountService.Register(model));
 
         [HttpGet]
         [Route("get_account")]
