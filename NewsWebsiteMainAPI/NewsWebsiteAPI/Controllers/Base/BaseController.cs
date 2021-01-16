@@ -8,28 +8,37 @@ namespace NewsWebsiteAPI.Controllers.Base
 {
     public class BaseController : ControllerBase
     {
-        protected IActionResult ExecuteAction(Func<IResult> action)
+        protected IActionResult ExecuteAction<TResult, TResponse>(
+            Func<TResult> action,
+            Func<TResult, TResponse> dataMethod)
+            where TResult : IResult
         {
             var result = action();
 
-            IActionResult response = result.Status switch
+            var response = dataMethod(result);
+
+            IActionResult actionResult = result.Status switch
             {
                 ResponseStatus.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError),
-                ResponseStatus.Success => Ok(result),
-                ResponseStatus.BadRequest => BadRequest(result),
-                ResponseStatus.Conflict => Conflict(result),
+                ResponseStatus.Success => Ok(response),
+                ResponseStatus.BadRequest => BadRequest(response),
+                ResponseStatus.Conflict => Conflict(response),
                 ResponseStatus.NoContent => NoContent(),
                 ResponseStatus.NotFound => NotFound(),
-                ResponseStatus.Unauthorized => Unauthorized(result),
-                ResponseStatus.Created => StatusCode(StatusCodes.Status201Created, result),
-                ResponseStatus.Accepted => Accepted(result),
-                ResponseStatus.PartialContent => StatusCode(StatusCodes.Status206PartialContent, result),
+                ResponseStatus.Unauthorized => Unauthorized(response),
+                ResponseStatus.Accepted => Accepted(response),
+                ResponseStatus.PartialContent => StatusCode(StatusCodes.Status206PartialContent, response),
                 ResponseStatus.Forbidden => Forbid(),
+                ResponseStatus.Created => StatusCode(StatusCodes.Status201Created, response),
                 ResponseStatus.TooManyRequests => StatusCode(StatusCodes.Status429TooManyRequests),
                 _ => throw new ArgumentOutOfRangeException()
             };
 
-            return response;
+            return actionResult;
         }
+
+        protected IActionResult ExecuteAction<TResult>(Func<TResult> action)
+            where TResult : IResult
+            => ExecuteAction(action, data => data);
     }
 }
