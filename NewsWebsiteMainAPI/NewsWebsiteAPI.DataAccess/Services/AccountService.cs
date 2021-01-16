@@ -1,8 +1,8 @@
-﻿using NewsWebsiteAPI.Infrastructure.Repositories;
+﻿using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 
-namespace NewsWebsiteAPI.Infrastructure.Services
+namespace NewsWebsiteAPI.DataAccess.Services
 {
     public class AccountService : IAccountService
     {

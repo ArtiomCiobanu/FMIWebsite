@@ -2,7 +2,7 @@ using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
-using NewsWebsiteAPI.Infrastructure.Services;
+using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extensions;
@@ -11,11 +11,11 @@ namespace NewsWebsiteAPI.Controllers
 {
     [ApiController]
     [Route("accounts")]
-    public class AccountsController : BaseController
+    public class AccountController : BaseController
     {
         private IAccountService AccountService { get; }
 
-        public AccountsController(IAccountService accountService)
+        public AccountController(IAccountService accountService)
         {
             AccountService = accountService;
         }

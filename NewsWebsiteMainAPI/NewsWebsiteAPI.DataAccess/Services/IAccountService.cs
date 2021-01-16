@@ -1,7 +1,7 @@
 ﻿using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 
-namespace NewsWebsiteAPI.Infrastructure.Services
+namespace NewsWebsiteAPI.DataAccess.Services
 {
     public interface IAccountService
     {

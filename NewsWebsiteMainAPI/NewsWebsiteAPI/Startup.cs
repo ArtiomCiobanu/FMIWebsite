@@ -8,12 +8,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
+using NewsWebsiteAPI.DataAccess.Repositories;
+using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Extensions;
 using NewsWebsiteAPI.Infrastructure.Configurators;
 using NewsWebsiteAPI.Infrastructure.Generators;
 using NewsWebsiteAPI.Infrastructure.Handlers;
-using NewsWebsiteAPI.Infrastructure.Repositories;
-using NewsWebsiteAPI.Infrastructure.Services;
 using NewsWebsiteAPI.Models.Authorization;
 using SettingsSections = NewsWebsiteAPI.Consts.SettingsSections;
 

@@ -1,6 +1,6 @@
 ﻿using NewsWebsiteAPI.Models.Dto.Accounts;
 
-namespace NewsWebsiteAPI.Infrastructure.Repositories
+namespace NewsWebsiteAPI.DataAccess.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
