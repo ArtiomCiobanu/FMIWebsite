@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Security.Claims;
 
-namespace NewsWebsiteAPI.Shared.Extentions
+namespace NewsWebsiteAPI.Shared.Extensions
 {
-    public static class ClaimsExtentions
+    public static class ClaimsExtensions
     {
         public static Claim GetClaim(this ClaimsPrincipal principal, string claimType)
         {

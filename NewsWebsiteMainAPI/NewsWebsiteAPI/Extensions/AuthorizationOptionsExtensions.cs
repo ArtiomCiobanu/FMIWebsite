@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using NewsWebsiteAPI.Models.Enums;
-using NewsWebsiteAPI.Shared.Consts;
+using NewsWebsiteAPI.Consts;
+using NewsWebsiteAPI.Infrastructure.Enums;
 
-namespace NewsWebsiteAPI.API.Extensions
+namespace NewsWebsiteAPI.Extensions
 {
     public static class AuthorizationOptionsExtensions
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using NewsWebsiteAPI.JwtAuthorization.Configurators;
-using NewsWebsiteAPI.Models.Enums;
+using NewsWebsiteAPI.Infrastructure.Configurators;
+using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Shared.Consts;
 
-namespace NewsWebsiteAPI.JwtAuthorization.Generators
+namespace NewsWebsiteAPI.Infrastructure.Generators
 {
     public class JwtGenerator : IJwtGenerator
     {

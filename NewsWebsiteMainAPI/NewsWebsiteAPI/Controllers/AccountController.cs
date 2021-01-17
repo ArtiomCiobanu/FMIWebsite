@@ -1,16 +1,25 @@
 using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NewsWebsiteAPI.Controllers.Base;
+using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extentions;
+using NewsWebsiteAPI.Shared.Extensions;
 
 namespace NewsWebsiteAPI.Controllers
 {
     [ApiController]
     [Route("accounts")]
-    public class AccountsController : ControllerBase
+    public class AccountController : BaseController
     {
+        private IAccountService AccountService { get; }
+
+        public AccountController(IAccountService accountService)
+        {
+            AccountService = accountService;
+        }
+
         [HttpPost]
         [Route("login")]
         public ActionResult<string> LogIn([FromBody] AuthenticationModel model)
@@ -20,10 +29,8 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpPost]
         [Route("register")]
-        public ActionResult<string> Register([FromBody]RegistrationModel model)
-        {
-            return Ok();
-        }
+        public IActionResult Register([FromBody] RegistrationModel model)
+            => ExecuteAction(() => AccountService.Register(model));
 
         [HttpGet]
         [Route("get_account")]

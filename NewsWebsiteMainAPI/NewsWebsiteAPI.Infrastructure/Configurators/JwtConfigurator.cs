@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using NewsWebsiteAPI.Models.Authorization;
 
-namespace NewsWebsiteAPI.JwtAuthorization.Configurators
+namespace NewsWebsiteAPI.Infrastructure.Configurators
 {
     public class JwtConfigurator : IJwtConfigurator
     {

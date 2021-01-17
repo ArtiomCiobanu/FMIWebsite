@@ -7,13 +7,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NewsWebsiteAPI.API.Extensions;
 using NewsWebsiteAPI.Configuration;
-using NewsWebsiteAPI.JwtAuthorization.Configurators;
-using NewsWebsiteAPI.JwtAuthorization.Generators;
-using NewsWebsiteAPI.JwtAuthorization.Handlers;
+using NewsWebsiteAPI.DataAccess.Repositories;
+using NewsWebsiteAPI.DataAccess.Services;
+using NewsWebsiteAPI.Extensions;
+using NewsWebsiteAPI.Infrastructure.Configurators;
+using NewsWebsiteAPI.Infrastructure.Generators;
+using NewsWebsiteAPI.Infrastructure.Handlers;
 using NewsWebsiteAPI.Models.Authorization;
-using NewsWebsiteAPI.Shared.Consts;
+using SettingsSections = NewsWebsiteAPI.Consts.SettingsSections;
 
 namespace NewsWebsiteAPI
 {
@@ -31,6 +33,9 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IAccountService, AccountService>();
+            
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
@@ -40,7 +45,7 @@ namespace NewsWebsiteAPI
             });
             services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtHandler, JwtHandler>();
-
+            
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
