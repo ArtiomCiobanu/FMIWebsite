@@ -31,7 +31,9 @@ namespace NewsWebsiteAPI.Controllers.Base
                 ResponseStatus.Forbidden => Forbid(),
                 ResponseStatus.Created => StatusCode(StatusCodes.Status201Created, response),
                 ResponseStatus.TooManyRequests => StatusCode(StatusCodes.Status429TooManyRequests),
-                _ => throw new ArgumentOutOfRangeException()
+                _ => throw new ArgumentOutOfRangeException(
+                    $"{result.Status}", 
+                    "Should be a valid HTTP Status Code")
             };
 
             return actionResult;
