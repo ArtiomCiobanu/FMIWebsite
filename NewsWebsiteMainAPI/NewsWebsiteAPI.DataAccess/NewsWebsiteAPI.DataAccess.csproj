@@ -15,4 +15,8 @@
       <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Enums" />
+    </ItemGroup>
+
 </Project>
