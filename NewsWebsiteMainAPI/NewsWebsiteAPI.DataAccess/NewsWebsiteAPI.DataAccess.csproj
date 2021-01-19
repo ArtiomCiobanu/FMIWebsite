@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.2" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.2" />
     </ItemGroup>
@@ -13,10 +14,6 @@
     <ItemGroup>
       <ProjectReference Include="..\NewsWebsiteAPI.Infrastructure\NewsWebsiteAPI.Infrastructure.csproj" />
       <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Enums" />
     </ItemGroup>
 
 </Project>

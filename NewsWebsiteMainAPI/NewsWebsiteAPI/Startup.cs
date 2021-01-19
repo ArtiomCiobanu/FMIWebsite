@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
+using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Extensions;
@@ -35,7 +36,7 @@ namespace NewsWebsiteAPI
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAccountService, AccountService>();
-            
+
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
                 var jwtConfiguration = Configuration
@@ -45,7 +46,7 @@ namespace NewsWebsiteAPI
             });
             services.AddSingleton<IJwtGenerator, JwtGenerator>();
             services.AddSingleton<IJwtHandler, JwtHandler>();
-            
+
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -60,6 +61,14 @@ namespace NewsWebsiteAPI
 
             services.AddAuthorization(
                 options => { options.AddRequireAdministratorRolePolicy(); });
+
+            services.AddIdentityCore<Account>(options =>
+            {
+                options.Password.RequiredLength = 8;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = true;
+            });
 
             services
                 .AddControllers()
