@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Infrastructure.Enums;
@@ -8,12 +9,12 @@ namespace NewsWebsiteAPI.Controllers.Base
 {
     public class BaseController : ControllerBase
     {
-        protected IActionResult ExecuteAction<TResult, TResponse>(
-            Func<TResult> action,
+        protected async Task<IActionResult> ExecuteAction<TResult, TResponse>(
+            Func<Task<TResult>> action,
             Func<TResult, TResponse> dataMethod)
             where TResult : IResult
         {
-            var result = action();
+            var result = await action();
 
             var response = dataMethod(result);
 
@@ -32,14 +33,14 @@ namespace NewsWebsiteAPI.Controllers.Base
                 ResponseStatus.Created => StatusCode(StatusCodes.Status201Created, response),
                 ResponseStatus.TooManyRequests => StatusCode(StatusCodes.Status429TooManyRequests),
                 _ => throw new ArgumentOutOfRangeException(
-                    $"{result.Status}", 
+                    $"{result.Status}",
                     "Should be a valid HTTP Status Code")
             };
 
             return actionResult;
         }
 
-        protected IActionResult ExecuteAction<TResult>(Func<TResult> action)
+        protected Task<IActionResult> ExecuteAction<TResult>(Func<Task<TResult>> action)
             where TResult : IResult
             => ExecuteAction(action, data => data);
     }

@@ -1,4 +1,5 @@
-﻿using NewsWebsiteAPI.DataAccess.Repositories;
+﻿using System.Threading.Tasks;
+using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 
@@ -13,16 +14,18 @@ namespace NewsWebsiteAPI.DataAccess.Services
             AccountRepository = accountRepository;
         }
 
-        public IResult Register(RegistrationModel registrationModel)
+        public async Task<IResult> Register(RegistrationModel registrationModel)
         {
             if (!AccountRepository.ExistsWithEmail(registrationModel.Email))
-                return Result.Fail("The user already exists!");
+            {
+                return await Task.FromResult(Result.Fail("The user already exists!"));
+            }
 
             AccountRepository.CreateUser(registrationModel);
-            return Result.Success("Created");
+            return await Task.FromResult(Result.Success("Created"));
         }
 
-        public void LogIn()
+        public Task LogIn()
         {
             throw new System.NotImplementedException();
         }
