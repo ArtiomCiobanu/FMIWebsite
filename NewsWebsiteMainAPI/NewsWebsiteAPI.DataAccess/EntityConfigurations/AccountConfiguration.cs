@@ -12,7 +12,7 @@ namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
                 .HasKey(account => account.Id);
 
             builder
-                .Property(account => account.Role)
+                .Property(account => account.RoleId)
                 .IsRequired();
             builder
                 .Property(account => account.FullName)

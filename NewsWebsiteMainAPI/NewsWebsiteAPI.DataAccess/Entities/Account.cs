@@ -7,7 +7,7 @@ namespace NewsWebsiteAPI.DataAccess.Entities
     public class Account
     {
         public Guid Id { get; set; }
-        public UserRole Role { get; set; }
+        public int RoleId { get; set; }
         public string FullName { get; set; }
 
         [DataType(DataType.EmailAddress)]
