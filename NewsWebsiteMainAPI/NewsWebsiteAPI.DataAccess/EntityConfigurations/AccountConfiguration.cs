@@ -17,6 +17,9 @@ namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
             builder
                 .Property(account => account.FullName)
                 .IsRequired();
+            builder
+                .Property(account => account.Email)
+                .IsRequired();
         }
     }
 }

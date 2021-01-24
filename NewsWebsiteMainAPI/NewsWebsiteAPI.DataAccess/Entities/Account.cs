@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using NewsWebsiteAPI.Infrastructure.Enums;
 
 namespace NewsWebsiteAPI.DataAccess.Entities
 {

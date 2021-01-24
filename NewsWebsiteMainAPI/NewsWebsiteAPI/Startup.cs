@@ -30,22 +30,6 @@ namespace NewsWebsiteAPI
         {
             services.AddAccountDbContext(Configuration.GetConnectionString("DefaultConnectionString"));
 
-            /*services.AddIdentity<Account, Role>(options =>
-            {
-                options.Password.RequiredLength = 8;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.User.RequireUniqueEmail = true;
-            });*/
-            /*services.AddIdentityCore<Account>(options =>
-            {
-                options.Password.RequiredLength = 8;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.User.RequireUniqueEmail = true;
-            });
-            */
-
             services.AddRepositories();
             services.AddServices();
 

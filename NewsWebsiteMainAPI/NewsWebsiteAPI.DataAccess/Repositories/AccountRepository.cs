@@ -1,20 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Context;
 using NewsWebsiteAPI.DataAccess.Entities;
-using NewsWebsiteAPI.Infrastructure.Enums;
-using NewsWebsiteAPI.Models.Dto.Accounts;
 
 namespace NewsWebsiteAPI.DataAccess.Repositories
 {
     public class AccountRepository : IAccountRepository
     {
-        /*private UserManager<Account> UserManager { get; }
-
-        public AccountRepository(UserManager<Account> userManager)
-        {
-            UserManager = userManager;
-        }*/
-
         private readonly AccountContext _accountContext;
 
         public AccountRepository(AccountContext context)
@@ -22,21 +14,21 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
             _accountContext = context;
         }
 
-        public bool ExistsWithEmail(string email)
+        public async Task CreateAsync(Account account)
         {
-            return true;
+            await _accountContext.Accounts.AddAsync(account);
+            await _accountContext.SaveChangesAsync();
         }
 
-        public void CreateUser(RegistrationModel registrationModel)
+        public async Task UpdateAsync(Account account)
         {
-            _accountContext.Add(new Account()
-            {
-                Id = Guid.NewGuid(),
-                Email = registrationModel.Email,
-                FullName = registrationModel.FullName,
-                RoleId = 0 //UserRole.User
-            });
-            _accountContext.SaveChanges();
+            _accountContext.Accounts.Update(account);
+            await _accountContext.SaveChangesAsync();
+        }
+
+        public async Task<Account> GetAsync(Guid id)
+        {
+            return await _accountContext.Accounts.FindAsync(id);
         }
     }
 }
