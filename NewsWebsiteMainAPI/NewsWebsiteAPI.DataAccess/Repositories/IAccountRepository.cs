@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Entities;
+using NewsWebsiteAPI.DataAccess.Repositories.Generic;
 
 namespace NewsWebsiteAPI.DataAccess.Repositories
 {
-    public interface IAccountRepository
+    public interface IAccountRepository : IRepository<Account>
     {
-        public Task CreateAsync(Account account);
-        public Task UpdateAsync(Account account);
-        public Task<Account> GetAsync(Guid id);
     }
 }

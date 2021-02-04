@@ -19,7 +19,12 @@ namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
                 .IsRequired();
             builder
                 .Property(account => account.Email)
-                .IsRequired();
+                .IsRequired()
+                .HasMaxLength(50);
+            builder
+                .Property(account => account.Password)
+                .IsRequired()
+                .HasMaxLength(50);
         }
     }
 }

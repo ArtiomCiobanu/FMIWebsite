@@ -11,5 +11,6 @@ namespace NewsWebsiteAPI.DataAccess.Entities
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        public string Password { get; set; }
     }
 }
