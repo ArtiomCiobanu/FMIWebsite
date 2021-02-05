@@ -9,6 +9,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
     {
         public Task<IResult> RegisterAsync(RegistrationModel registrationModel);
         public Task LogInAsync();
-        public Task<bool> ExistsAsync(Guid userId);
+        public Task<bool> GetExistsWithIdAsync(Guid userId);
+        public Task<bool> ExistsWithEmailAsync(string email);
     }
 }

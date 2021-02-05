@@ -18,11 +18,11 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
         public async Task<IResult> RegisterAsync(RegistrationModel registrationModel)
         {
-            /*if (!AccountRepository.ExistsWithEmail(registrationModel.Email))
+            if (await ExistsWithEmailAsync(registrationModel.Email))
             {
-                return await Task.FromResult(Result.Fail("The user already exists!"));
-            }*/
-            
+                return await Task.FromResult(Result.Fail("There is already a user with this email!"));
+            }
+
             await AccountRepository.CreateAsync(new Account()
             {
                 Id = Guid.NewGuid(),
@@ -38,10 +38,17 @@ namespace NewsWebsiteAPI.DataAccess.Services
             throw new System.NotImplementedException();
         }
 
-        public async Task<bool> ExistsAsync(Guid userId)
+        public async Task<bool> GetExistsWithIdAsync(Guid userId)
         {
             var user = await AccountRepository.GetAsync(userId);
             return user != null;
+        }
+
+        public async Task<bool> ExistsWithEmailAsync(string email)
+        {
+            var foundUser = await AccountRepository.GetWithEmailAsync(email);
+
+            return foundUser != null;
         }
     }
 }
