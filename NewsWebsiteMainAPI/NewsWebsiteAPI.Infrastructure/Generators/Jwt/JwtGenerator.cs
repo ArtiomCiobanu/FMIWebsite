@@ -5,7 +5,7 @@ using NewsWebsiteAPI.Infrastructure.Configurators;
 using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Shared.Consts;
 
-namespace NewsWebsiteAPI.Infrastructure.Generators
+namespace NewsWebsiteAPI.Infrastructure.Generators.Jwt
 {
     public class JwtGenerator : IJwtGenerator
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using NewsWebsiteAPI.Infrastructure.Enums;
 
-namespace NewsWebsiteAPI.Infrastructure.Generators
+namespace NewsWebsiteAPI.Infrastructure.Generators.Jwt
 {
     public interface IJwtGenerator
     {

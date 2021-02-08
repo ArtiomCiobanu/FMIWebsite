@@ -5,6 +5,7 @@ using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Infrastructure.Configurators;
 using NewsWebsiteAPI.Infrastructure.Generators;
+using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Handlers;
 using NewsWebsiteAPI.Models.Authorization;
 
