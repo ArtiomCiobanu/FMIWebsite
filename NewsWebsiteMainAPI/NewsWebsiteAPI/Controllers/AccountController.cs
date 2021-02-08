@@ -23,10 +23,8 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ActionResult<string> LogIn([FromBody] AuthenticationModel model)
-        {
-            return Ok();
-        }
+        public async Task<IActionResult> LogIn([FromBody] AuthenticationModel model)
+            => await ExecuteAction(() => AccountService.LogInAsync(model));
 
         [HttpPost]
         [Route("register")]

@@ -12,7 +12,7 @@ namespace NewsWebsiteAPI.Controllers.Base
         protected async Task<IActionResult> ExecuteAction<TResult, TResponse>(
             Func<Task<TResult>> action,
             Func<TResult, TResponse> dataMethod)
-            where TResult : IResult
+            where TResult : Result
         {
             var result = await action();
 
@@ -41,7 +41,7 @@ namespace NewsWebsiteAPI.Controllers.Base
         }
 
         protected Task<IActionResult> ExecuteAction<TResult>(Func<Task<TResult>> action)
-            where TResult : IResult
-            => ExecuteAction(action, data => data);
+            where TResult : Result
+            => ExecuteAction(action, data => data.Message);
     }
 }
