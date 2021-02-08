@@ -6,5 +6,6 @@
         public const string SwaggerConfigurationEndpoints = "Endpoints";
         
         public const string JwtConfiguration = "JwtConfiguration";
+        public const string HashConfiguration = "HashConfiguration";
     }
 }

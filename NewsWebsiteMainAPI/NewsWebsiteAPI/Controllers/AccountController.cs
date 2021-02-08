@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
@@ -29,8 +30,8 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpPost]
         [Route("register")]
-        public IActionResult Register([FromBody] RegistrationModel model)
-            => ExecuteAction(() => AccountService.Register(model));
+        public async Task<IActionResult> Register([FromBody] RegistrationModel model)
+            => await ExecuteAction(() => AccountService.RegisterAsync(model));
 
         [HttpGet]
         [Route("get_account")]

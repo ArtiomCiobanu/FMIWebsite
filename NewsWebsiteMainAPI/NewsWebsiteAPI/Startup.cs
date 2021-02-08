@@ -8,14 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
-using NewsWebsiteAPI.DataAccess.Repositories;
-using NewsWebsiteAPI.DataAccess.Services;
+using NewsWebsiteAPI.DataAccess.Extensions;
 using NewsWebsiteAPI.Extensions;
 using NewsWebsiteAPI.Infrastructure.Configurators;
-using NewsWebsiteAPI.Infrastructure.Generators;
-using NewsWebsiteAPI.Infrastructure.Handlers;
-using NewsWebsiteAPI.Models.Authorization;
-using SettingsSections = NewsWebsiteAPI.Consts.SettingsSections;
 
 namespace NewsWebsiteAPI
 {
@@ -33,19 +28,11 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IAccountService, AccountService>();
-            
-            services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
-            {
-                var jwtConfiguration = Configuration
-                    .GetSection(SettingsSections.JwtConfiguration).Get<JwtConfiguration>();
+            services.AddAccountDbContext(Configuration.GetConnectionString("DefaultConnectionString"));
 
-                return new JwtConfigurator(jwtConfiguration);
-            });
-            services.AddSingleton<IJwtGenerator, JwtGenerator>();
-            services.AddSingleton<IJwtHandler, JwtHandler>();
-            
+            services.AddRepositories();
+            services.AddServices();
+            services.AddGenerators(Configuration);
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

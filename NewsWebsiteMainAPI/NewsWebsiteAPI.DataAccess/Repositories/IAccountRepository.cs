@@ -1,10 +1,12 @@
-﻿using NewsWebsiteAPI.Models.Dto.Accounts;
+﻿using System;
+using System.Threading.Tasks;
+using NewsWebsiteAPI.DataAccess.Entities;
+using NewsWebsiteAPI.DataAccess.Repositories.Generic;
 
 namespace NewsWebsiteAPI.DataAccess.Repositories
 {
-    public interface IAccountRepository
+    public interface IAccountRepository : IRepository<Account>
     {
-        public bool ExistsWithEmail(string email);
-        public void CreateUser(RegistrationModel registrationModel);
+        public Task<Account> GetWithEmailAsync(string email);
     }
 }

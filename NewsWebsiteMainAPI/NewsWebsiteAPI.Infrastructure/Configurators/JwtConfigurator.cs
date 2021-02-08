@@ -1,6 +1,6 @@
 ﻿using System.Text;
 using Microsoft.IdentityModel.Tokens;
-using NewsWebsiteAPI.Models.Authorization;
+using NewsWebsiteAPI.Models.Configuration;
 
 namespace NewsWebsiteAPI.Infrastructure.Configurators
 {
