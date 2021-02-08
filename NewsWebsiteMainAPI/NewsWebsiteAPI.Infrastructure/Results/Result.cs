@@ -33,5 +33,11 @@ namespace NewsWebsiteAPI.Infrastructure.Results
                 Status = ResponseStatus.InternalServerError,
                 Message = message
             };
+        public static Result Unauthorized(string message) =>
+            new()
+            {
+                Status = ResponseStatus.Unauthorized,
+                Message = message
+            };
     }
 }

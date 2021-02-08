@@ -20,17 +20,17 @@ namespace NewsWebsiteAPI.DataAccess.Services
         {
             if (await ExistsWithEmailAsync(registrationModel.Email))
             {
-                return await Task.FromResult(Result.Fail("There is already a user with this email!"));
+                return Result.Unauthorized("There is already a user with this email!");
             }
 
-            await AccountRepository.CreateAsync(new Account()
+            await AccountRepository.CreateAsync(new Account
             {
                 Id = Guid.NewGuid(),
                 Email = registrationModel.Email,
                 FullName = registrationModel.FullName,
                 RoleId = 0 //UserRole.User
             });
-            return await Task.FromResult(Result.Success("Created"));
+            return Result.Success("Created");
         }
 
         public Task LogInAsync()
