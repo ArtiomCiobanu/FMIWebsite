@@ -4,10 +4,10 @@ using NewsWebsiteAPI.Consts;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Infrastructure.Configurators;
-using NewsWebsiteAPI.Infrastructure.Generators;
+using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Handlers;
-using NewsWebsiteAPI.Models.Authorization;
+using NewsWebsiteAPI.Models.Configuration;
 
 namespace NewsWebsiteAPI.Extensions
 {
@@ -23,7 +23,13 @@ namespace NewsWebsiteAPI.Extensions
             services.AddScoped<IAccountService, AccountService>();
         }
 
-        public static void AddJwt(this IServiceCollection services, IConfiguration configuration)
+        public static void AddJwt(this IServiceCollection services)
+        {
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
+            services.AddScoped<IJwtHandler, JwtHandler>();
+        }
+
+        public static void AddGenerators(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IJwtConfigurator, JwtConfigurator>(_ =>
             {
@@ -33,8 +39,13 @@ namespace NewsWebsiteAPI.Extensions
                 return new JwtConfigurator(jwtConfiguration);
             });
 
-            services.AddSingleton<IJwtGenerator, JwtGenerator>();
-            services.AddSingleton<IJwtHandler, JwtHandler>();
+            services.AddSingleton<IHashGenerator, HashGenerator>(_ =>
+            {
+                var hashConfiguration = configuration
+                    .GetSection(SettingsSections.HashConfiguration).Get<HashConfiguration>();
+
+                return new HashGenerator(hashConfiguration);
+            });
         }
     }
 }

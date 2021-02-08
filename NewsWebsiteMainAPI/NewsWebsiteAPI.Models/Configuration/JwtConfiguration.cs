@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Models.Authorization
+﻿namespace NewsWebsiteAPI.Models.Configuration
 {
     public class JwtConfiguration
     {

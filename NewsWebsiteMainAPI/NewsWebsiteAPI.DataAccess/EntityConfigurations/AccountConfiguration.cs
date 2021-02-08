@@ -22,7 +22,7 @@ namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(50);
             builder
-                .Property(account => account.Password)
+                .Property(account => account.PasswordHash)
                 .IsRequired()
                 .HasMaxLength(50);
         }

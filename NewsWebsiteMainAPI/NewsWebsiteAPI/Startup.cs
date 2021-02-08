@@ -32,8 +32,7 @@ namespace NewsWebsiteAPI
 
             services.AddRepositories();
             services.AddServices();
-
-            services.AddJwt(Configuration);
+            services.AddGenerators(Configuration);
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
