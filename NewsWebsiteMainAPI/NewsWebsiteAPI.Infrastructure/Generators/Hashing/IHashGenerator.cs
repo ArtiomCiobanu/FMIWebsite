@@ -1,7 +1,9 @@
-﻿namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
+﻿using System.Threading.Tasks;
+
+namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
 {
     public interface IHashGenerator
     {
-        public string GetHash(string text, string salt);
+        public Task<string> GetHash(string text, string salt);
     }
 }

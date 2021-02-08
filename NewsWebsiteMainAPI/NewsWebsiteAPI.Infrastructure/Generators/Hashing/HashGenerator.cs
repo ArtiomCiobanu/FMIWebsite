@@ -1,10 +1,11 @@
 ﻿using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
 {
     public class HashGenerator : IHashGenerator
     {
-        public async string GetHash(string text, string salt)
+        public async Task<string> GetHash(string text, string salt)
         {
             HashAlgorithm hashAlgorithm = new MD5CryptoServiceProvider();
 
