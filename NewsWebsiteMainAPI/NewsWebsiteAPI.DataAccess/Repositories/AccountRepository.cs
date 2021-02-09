@@ -29,18 +29,20 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         }
 
         public async Task<Account> GetAsync(Guid id)
-        {
-            return await _accountContext.Accounts.FindAsync(id);
-        }
+            => await _accountContext.Accounts.FindAsync(id);
 
-        public Task<Account> DeleteWithIdAsync(Guid id)
+        public async Task DeleteWithIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var user = await GetAsync(id);
+
+            _accountContext.Accounts.Remove(user);
+            await _accountContext.SaveChangesAsync();
         }
 
         public Task<Account> GetWithEmailAsync(string email)
-        {
-            return _accountContext.Accounts.FirstOrDefaultAsync(a => a.Email == email);
-        }
+            => _accountContext.Accounts.FirstOrDefaultAsync(account => account.Email == email);
+
+        public Task<bool> ExistsWithEmailAsync(string email)
+            => _accountContext.Accounts.AnyAsync(account => account.Email == email);
     }
 }
