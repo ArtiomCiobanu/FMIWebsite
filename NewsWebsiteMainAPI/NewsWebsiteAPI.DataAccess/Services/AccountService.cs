@@ -21,7 +21,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
         public async Task<Result> RegisterAsync(RegistrationModel registrationModel)
         {
-            if (await ExistsWithEmailAsync(registrationModel.Email))
+            if (await AccountRepository.ExistsWithEmailAsync(registrationModel.Email))
             {
                 return Result.Unauthorized("There is already a user with this email!");
             }
@@ -61,13 +61,6 @@ namespace NewsWebsiteAPI.DataAccess.Services
         {
             var user = await AccountRepository.GetAsync(userId);
             return user != null;
-        }
-
-        public async Task<bool> ExistsWithEmailAsync(string email)
-        {
-            var foundUser = await AccountRepository.GetWithEmailAsync(email);
-
-            return foundUser != null;
         }
     }
 }

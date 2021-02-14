@@ -36,7 +36,7 @@ namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
 
             var hash = await hashAlgorithm.ComputeHashAsync(inputStream);
 
-            return Encoding.UTF8.GetString(hash);
+            return Encoding.Unicode.GetString(hash);
         }
     }
 }
