@@ -24,6 +24,7 @@ namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
             var saltedHash = md5.ComputeHash(textBytes);
 
             var hashedText = Encoding.UTF8.GetString(saltedHash);
+
             return await Task.FromResult(hashedText);*/
             //
             using HashAlgorithm hashAlgorithm = new MD5CryptoServiceProvider();
@@ -35,7 +36,6 @@ namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
             await streamWriter.WriteAsync(saltedText);
 
             var hash = await hashAlgorithm.ComputeHashAsync(inputStream);
-
             return Encoding.Unicode.GetString(hash);
         }
     }
