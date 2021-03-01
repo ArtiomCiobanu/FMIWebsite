@@ -37,7 +37,7 @@ namespace NewsWebsiteAPI.Controllers
         [HttpGet]
         [Route("get_account")]
         [Authorize]
-        public ActionResult<Guid> GetAccountData()
+        public ActionResult<Guid> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 

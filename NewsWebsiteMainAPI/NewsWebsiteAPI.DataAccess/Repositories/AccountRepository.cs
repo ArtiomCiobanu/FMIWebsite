@@ -1,8 +1,4 @@
 ﻿using System;
-<<<<<<< Development
-=======
-using System.Linq;
->>>>>>> master
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context;
@@ -26,7 +22,6 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         }
 
         public async Task UpdateAsync(Account account)
-<<<<<<< Development
         {
             _accountContext.Accounts.Update(account);
             await _accountContext.SaveChangesAsync();
@@ -41,26 +36,6 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
 
             _accountContext.Accounts.Remove(user);
             await _accountContext.SaveChangesAsync();
-=======
-        {
-            _accountContext.Accounts.Update(account);
-            await _accountContext.SaveChangesAsync();
-        }
-
-        public async Task<Account> GetAsync(Guid id)
-        {
-            return await _accountContext.Accounts.FindAsync(id);
-        }
-
-        public Task<Account> DeleteWithIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Account> GetWithEmailAsync(string email)
-        {
-            return _accountContext.Accounts.FirstOrDefaultAsync(a => a.Email == email);
->>>>>>> master
         }
 
         public Task<Account> GetWithEmailAsync(string email)
