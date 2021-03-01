@@ -5,39 +5,27 @@ namespace NewsWebsiteAPI.Infrastructure.Results
     public class Result : IResult
     {
         public ResponseStatus Status { get; set; }
-
         public string Message { get; set; }
 
-        public static Result Success() =>
-            new()
-            {
-                Status = ResponseStatus.Success
-            };
+        public Result()
+        {
+        }
 
-        public static Result Success(string message) =>
-            new()
-            {
-                Status = ResponseStatus.Success,
-                Message = message
-            };
+        public Result(ResponseStatus responseStatus)
+        {
+            Status = responseStatus;
+        }
 
-        public static Result Fail() =>
-            new()
-            {
-                Status = ResponseStatus.InternalServerError
-            };
+        public Result(ResponseStatus responseStatus, string message)
+        {
+            Status = responseStatus;
+            Message = message;
+        }
 
-        public static Result Fail(string message) =>
-            new()
-            {
-                Status = ResponseStatus.InternalServerError,
-                Message = message
-            };
-        public static Result Unauthorized(string message) =>
-            new()
-            {
-                Status = ResponseStatus.Unauthorized,
-                Message = message
-            };
+        public static Result Success() => new(ResponseStatus.Success);
+        public static Result Success(string message) => new(ResponseStatus.Success, message);
+        public static Result Fail() => new(ResponseStatus.InternalServerError);
+        public static Result Fail(string message) => new(ResponseStatus.InternalServerError, message);
+        public static Result Unauthorized(string message) => new Result(ResponseStatus.Unauthorized, message);
     }
 }

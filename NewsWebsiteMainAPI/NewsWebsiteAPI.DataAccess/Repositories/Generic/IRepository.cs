@@ -9,6 +9,9 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
         public Task CreateAsync(T account);
         public Task UpdateAsync(T account);
         public Task<T> GetAsync(Guid id);
-        public Task<T> DeleteWithIdAsync(Guid id);
+          
+        public Task DeleteWithIdAsync(Guid id);
+
+        public Task ExistsWithIdAsync(Guid id);
     }
 }

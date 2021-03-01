@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +24,14 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public ActionResult<string> LogIn([FromBody] AuthenticationModel model)
-        {
-            return Ok();
-        }
+        public async Task<IActionResult> LogIn(
+            [Required] [FromBody] AuthenticationModel model)
+            => await ExecuteAction(() => AccountService.LogInAsync(model));
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationModel model)
+        public async Task<IActionResult> Register(
+            [Required] [FromBody] RegistrationModel model)
             => await ExecuteAction(() => AccountService.RegisterAsync(model));
 
         [HttpGet]

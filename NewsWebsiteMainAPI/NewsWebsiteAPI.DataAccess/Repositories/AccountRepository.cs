@@ -1,5 +1,8 @@
 ﻿using System;
+<<<<<<< Development
+=======
 using System.Linq;
+>>>>>>> master
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context;
@@ -23,6 +26,22 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         }
 
         public async Task UpdateAsync(Account account)
+<<<<<<< Development
+        {
+            _accountContext.Accounts.Update(account);
+            await _accountContext.SaveChangesAsync();
+        }
+
+        public async Task<Account> GetAsync(Guid id)
+            => await _accountContext.Accounts.FindAsync(id);
+
+        public async Task DeleteWithIdAsync(Guid id)
+        {
+            var user = await GetAsync(id);
+
+            _accountContext.Accounts.Remove(user);
+            await _accountContext.SaveChangesAsync();
+=======
         {
             _accountContext.Accounts.Update(account);
             await _accountContext.SaveChangesAsync();
@@ -41,6 +60,16 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         public Task<Account> GetWithEmailAsync(string email)
         {
             return _accountContext.Accounts.FirstOrDefaultAsync(a => a.Email == email);
+>>>>>>> master
         }
+
+        public Task<Account> GetWithEmailAsync(string email)
+            => _accountContext.Accounts.FirstOrDefaultAsync(account => account.Email == email);
+
+        public Task<bool> ExistsWithEmailAsync(string email)
+            => _accountContext.Accounts.AnyAsync(account => account.Email == email);
+
+        public Task ExistsWithIdAsync(Guid id)
+            => _accountContext.Accounts.AnyAsync(account => account.Id == id);
     }
 }

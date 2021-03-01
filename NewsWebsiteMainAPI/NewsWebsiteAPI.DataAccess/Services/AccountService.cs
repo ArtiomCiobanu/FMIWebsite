@@ -19,9 +19,9 @@ namespace NewsWebsiteAPI.DataAccess.Services
             HashGenerator = hashGenerator;
         }
 
-        public async Task<IResult> RegisterAsync(RegistrationModel registrationModel)
+        public async Task<Result> RegisterAsync(RegistrationModel registrationModel)
         {
-            if (await ExistsWithEmailAsync(registrationModel.Email))
+            if (await AccountRepository.ExistsWithEmailAsync(registrationModel.Email))
             {
                 return Result.Unauthorized("There is already a user with this email!");
             }
@@ -40,9 +40,21 @@ namespace NewsWebsiteAPI.DataAccess.Services
             return Result.Success("Created");
         }
 
-        public Task LogInAsync()
+        public async Task<Result> LogInAsync(AuthenticationModel authenticationModel)
         {
-            throw new System.NotImplementedException();
+            var user = await AccountRepository.GetWithEmailAsync(authenticationModel.Email);
+
+            if (user != null)
+            {
+                var passwordHash = await HashGenerator.GenerateSaltedHash(authenticationModel.Password);
+
+                if (user.PasswordHash == passwordHash)
+                {
+                    return Result.Success();
+                }
+            }
+
+            return Result.Unauthorized("Email or password is incorrect.");
         }
 
         public async Task<bool> GetExistsWithIdAsync(Guid userId)
