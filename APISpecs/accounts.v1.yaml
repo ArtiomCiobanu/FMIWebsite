@@ -12,6 +12,10 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            text/plain:
+              schema: {}
+              examples: {}
         '400':
           description: Bad Request
         '401':

@@ -2,7 +2,9 @@
 using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.DataAccess.Repositories;
+using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
+using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 
@@ -12,11 +14,16 @@ namespace NewsWebsiteAPI.DataAccess.Services
     {
         private IAccountRepository AccountRepository { get; }
         private IHashGenerator HashGenerator { get; }
+        private IJwtGenerator JwtGenerator { get; }
 
-        public AccountService(IAccountRepository accountRepository, IHashGenerator hashGenerator)
+        public AccountService(
+            IAccountRepository accountRepository,
+            IHashGenerator hashGenerator,
+            IJwtGenerator jwtGenerator)
         {
             AccountRepository = accountRepository;
             HashGenerator = hashGenerator;
+            JwtGenerator = jwtGenerator;
         }
 
         public async Task<Result> RegisterAsync(RegistrationModel registrationModel)
@@ -50,24 +57,13 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
                 if (user.PasswordHash == passwordHash)
                 {
-                    return Result.Success();
+                    var token = JwtGenerator.GenerateToken(user.Id);
+
+                    return Result.Success(token);
                 }
             }
 
             return Result.Unauthorized("Email or password is incorrect.");
-        }
-
-        public async Task<bool> GetExistsWithIdAsync(Guid userId)
-        {
-            var user = await AccountRepository.GetAsync(userId);
-            return user != null;
-        }
-
-        public async Task<bool> ExistsWithEmailAsync(string email)
-        {
-            var foundUser = await AccountRepository.GetWithEmailAsync(email);
-
-            return foundUser != null;
         }
     }
 }
