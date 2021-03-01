@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.DataAccess.Services;
-using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extensions;
@@ -25,20 +24,20 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> LogIn(
+        public async Task<ActionResult<string>> LogIn(
             [Required] [FromBody] AuthenticationModel model)
             => await ExecuteAction(() => AccountService.LogInAsync(model));
 
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register(
+        public async Task<ActionResult<string>> Register(
             [Required] [FromBody] RegistrationModel model)
             => await ExecuteAction(() => AccountService.RegisterAsync(model));
 
         [HttpGet]
         [Route("get_account")]
         [Authorize]
-        public async Task<IActionResult> GetAccount()
+        public async Task<ActionResult<string>> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 
