@@ -12,6 +12,6 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
           
         public Task DeleteWithIdAsync(Guid id);
 
-        public Task ExistsWithIdAsync(Guid id);
+        public Task<bool> ExistsWithIdAsync(Guid id);
     }
 }

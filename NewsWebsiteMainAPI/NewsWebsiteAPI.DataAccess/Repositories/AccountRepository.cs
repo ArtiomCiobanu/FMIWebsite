@@ -44,7 +44,7 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         public Task<bool> ExistsWithEmailAsync(string email)
             => _accountContext.Accounts.AnyAsync(account => account.Email == email);
 
-        public Task ExistsWithIdAsync(Guid id)
+        public Task<bool> ExistsWithIdAsync(Guid id)
             => _accountContext.Accounts.AnyAsync(account => account.Id == id);
     }
 }

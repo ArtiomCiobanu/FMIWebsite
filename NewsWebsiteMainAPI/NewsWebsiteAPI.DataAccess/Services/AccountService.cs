@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.DataAccess.Repositories;
-using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Results;
@@ -49,21 +48,33 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
         public async Task<Result> LogInAsync(AuthenticationModel authenticationModel)
         {
-            var user = await AccountRepository.GetWithEmailAsync(authenticationModel.Email);
+            var account = await AccountRepository.GetWithEmailAsync(authenticationModel.Email);
 
-            if (user != null)
+            if (account != null)
             {
                 var passwordHash = await HashGenerator.GenerateSaltedHash(authenticationModel.Password);
 
-                if (user.PasswordHash == passwordHash)
+                if (account.PasswordHash == passwordHash)
                 {
-                    var token = JwtGenerator.GenerateToken(user.Id);
+                    var token = JwtGenerator.GenerateToken(account.Id);
 
                     return Result.Success(token);
                 }
             }
 
             return Result.Unauthorized("Email or password is incorrect.");
+        }
+
+        public async Task<Result> GetAccount(Guid id)
+        {
+            if (await AccountRepository.ExistsWithIdAsync(id))
+            {
+                var account = await AccountRepository.GetAsync(id);
+
+                return Result.Success(account.FullName);
+            }
+
+            return Result.Unauthorized("User does not exist.");
         }
     }
 }

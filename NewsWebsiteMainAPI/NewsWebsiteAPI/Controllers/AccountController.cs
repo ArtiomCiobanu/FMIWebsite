@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.DataAccess.Services;
+using NewsWebsiteAPI.Infrastructure.Results;
 using NewsWebsiteAPI.Models.Dto.Accounts;
 using NewsWebsiteAPI.Shared.Consts;
 using NewsWebsiteAPI.Shared.Extensions;
@@ -37,11 +38,11 @@ namespace NewsWebsiteAPI.Controllers
         [HttpGet]
         [Route("get_account")]
         [Authorize]
-        public ActionResult<Guid> GetAccount()
+        public async Task<IActionResult> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 
-            return Ok(id);
+            return await ExecuteAction(() => AccountService.GetAccount(id));
         }
     }
 }
