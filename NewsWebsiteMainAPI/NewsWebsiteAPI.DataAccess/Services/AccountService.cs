@@ -5,6 +5,7 @@ using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
@@ -25,56 +26,56 @@ namespace NewsWebsiteAPI.DataAccess.Services
             JwtGenerator = jwtGenerator;
         }
 
-        public async Task<BaseResult> RegisterAsync(RegistrationModel registrationModel)
+        public async Task<BaseResponse> RegisterAsync(RegistrationRequest registrationRequest)
         {
-            if (await AccountRepository.ExistsWithEmailAsync(registrationModel.Email))
+            if (await AccountRepository.ExistsWithEmailAsync(registrationRequest.Email))
             {
-                return BaseResult.Unauthorized("There is already a user with this email!");
+                return BaseResponse.Unauthorized("There is already a user with this email!");
             }
 
-            var passwordHash = await HashGenerator.GenerateSaltedHash(registrationModel.Password);
+            var passwordHash = await HashGenerator.GenerateSaltedHash(registrationRequest.Password);
 
             await AccountRepository.CreateAsync(new Account
             {
                 Id = Guid.NewGuid(),
-                Email = registrationModel.Email,
-                FullName = registrationModel.FullName,
+                Email = registrationRequest.Email,
+                FullName = registrationRequest.FullName,
                 RoleId = 0, //UserRole.User
                 PasswordHash = passwordHash
             });
 
-            return BaseResult.Success("Created");
+            return BaseResponse.Success("Created");
         }
 
-        public async Task<BaseResult> LogInAsync(AuthenticationModel authenticationModel)
+        public async Task<BaseResponse> LogInAsync(AuthenticationRequest authenticationRequest)
         {
-            var account = await AccountRepository.GetWithEmailAsync(authenticationModel.Email);
+            var account = await AccountRepository.GetWithEmailAsync(authenticationRequest.Email);
 
             if (account != null)
             {
-                var passwordHash = await HashGenerator.GenerateSaltedHash(authenticationModel.Password);
+                var passwordHash = await HashGenerator.GenerateSaltedHash(authenticationRequest.Password);
 
                 if (account.PasswordHash == passwordHash)
                 {
                     var token = JwtGenerator.GenerateToken(account.Id);
 
-                    return BaseResult.Success(token);
+                    return BaseResponse.Success(token);
                 }
             }
 
-            return BaseResult.Unauthorized("Email or password is incorrect.");
+            return BaseResponse.Unauthorized("Email or password is incorrect.");
         }
 
-        public async Task<BaseResult> GetIfExists(Guid id)
+        public async Task<BaseResponse> GetIfExists(Guid id)
         {
             if (await AccountRepository.ExistsWithIdAsync(id))
             {
                 var account = await AccountRepository.GetAsync(id);
 
-                return BaseResult.Success(account.FullName);
+                return BaseResponse.Success(account.FullName);
             }
 
-            return BaseResult.Unauthorized("User does not exist.");
+            return BaseResponse.Unauthorized("User does not exist.");
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {
     public interface IAccountService
     {
-        public Task<BaseResult> RegisterAsync(RegistrationModel registrationModel);
-        public Task<BaseResult> LogInAsync(AuthenticationModel authenticationModel);
-        public Task<BaseResult> GetIfExists(Guid id);
+        public Task<BaseResponse> RegisterAsync(RegistrationRequest registrationRequest);
+        public Task<BaseResponse> LogInAsync(AuthenticationRequest authenticationRequest);
+        public Task<BaseResponse> GetIfExists(Guid id);
     }
 }

@@ -3,7 +3,7 @@ using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 
 namespace NewsWebsiteAPI.Validators
 {
-    public class RegistrationModelValidator : AbstractValidator<RegistrationModel>
+    public class RegistrationModelValidator : AbstractValidator<RegistrationRequest>
     {
         public RegistrationModelValidator()
         {

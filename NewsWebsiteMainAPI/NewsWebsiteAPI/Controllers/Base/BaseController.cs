@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Infrastructure.Enums;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.Controllers.Base
@@ -12,7 +13,7 @@ namespace NewsWebsiteAPI.Controllers.Base
         protected async Task<ActionResult<TResponse>> ExecuteAction<TResult, TResponse>(
             Func<Task<TResult>> action,
             Func<TResult, TResponse> dataMethod)
-            where TResult : BaseResult
+            where TResult : BaseResponse
         {
             var result = await action();
 
@@ -41,7 +42,7 @@ namespace NewsWebsiteAPI.Controllers.Base
         }
 
         protected Task<ActionResult<string>> ExecuteAction<TResult>(Func<Task<TResult>> action)
-            where TResult : BaseResult
+            where TResult : BaseResponse
             => ExecuteAction(action, data => data.Message);
     }
 }

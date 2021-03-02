@@ -25,14 +25,14 @@ namespace NewsWebsiteAPI.Controllers
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult<string>> LogIn(
-            [Required] [FromBody] AuthenticationModel model)
-            => await ExecuteAction(() => AccountService.LogInAsync(model));
+            [Required] [FromBody] AuthenticationRequest request)
+            => await ExecuteAction(() => AccountService.LogInAsync(request));
 
         [HttpPost]
         [Route("register")]
         public async Task<ActionResult<string>> Register(
-            [Required] [FromBody] RegistrationModel model)
-            => await ExecuteAction(() => AccountService.RegisterAsync(model));
+            [Required] [FromBody] RegistrationRequest request)
+            => await ExecuteAction(() => AccountService.RegisterAsync(request));
 
         [HttpGet]
         [Route("get_account")]
