@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Models.Configuration
+﻿namespace NewsWebsiteAPI.Infrastructure.Models.Configuration
 {
     public class JwtConfiguration
     {

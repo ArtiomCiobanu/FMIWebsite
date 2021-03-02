@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using NewsWebsiteAPI.Models.Configuration;
+using NewsWebsiteAPI.Infrastructure.Models.Configuration;
 
 namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
 {

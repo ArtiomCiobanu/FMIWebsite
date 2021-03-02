@@ -1,6 +1,6 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extensions;
+using NewsWebsiteAPI.Infrastructure.Constants;
+using NewsWebsiteAPI.Infrastructure.Extensions;
 
 namespace NewsWebsiteAPI.Infrastructure.Handlers
 {

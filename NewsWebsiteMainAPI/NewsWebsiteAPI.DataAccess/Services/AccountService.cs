@@ -4,8 +4,8 @@ using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
-using NewsWebsiteAPI.Infrastructure.Results;
-using NewsWebsiteAPI.Models.Dto.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {

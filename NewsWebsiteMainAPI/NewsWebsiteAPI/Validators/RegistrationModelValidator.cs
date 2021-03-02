@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using NewsWebsiteAPI.Models.Dto.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 
 namespace NewsWebsiteAPI.Validators
 {

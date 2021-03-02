@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NewsWebsiteAPI.Infrastructure.Results;
-using NewsWebsiteAPI.Models.Dto.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {

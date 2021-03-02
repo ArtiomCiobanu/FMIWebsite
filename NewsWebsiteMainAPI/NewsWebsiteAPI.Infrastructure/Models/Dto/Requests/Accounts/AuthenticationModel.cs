@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Models.Dto.Accounts
+﻿namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts
 {
     public class AuthenticationModel
     {

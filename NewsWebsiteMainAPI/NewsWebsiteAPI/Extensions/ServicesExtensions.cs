@@ -7,7 +7,7 @@ using NewsWebsiteAPI.Infrastructure.Configurators;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Handlers;
-using NewsWebsiteAPI.Models.Configuration;
+using NewsWebsiteAPI.Infrastructure.Models.Configuration;
 
 namespace NewsWebsiteAPI.Extensions
 {

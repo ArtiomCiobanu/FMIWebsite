@@ -1,5 +1,5 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using NewsWebsiteAPI.Models.Configuration;
+using NewsWebsiteAPI.Infrastructure.Models.Configuration;
 
 namespace NewsWebsiteAPI.Infrastructure.Configurators
 {

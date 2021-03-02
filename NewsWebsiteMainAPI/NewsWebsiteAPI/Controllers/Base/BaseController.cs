@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Infrastructure.Enums;
-using NewsWebsiteAPI.Infrastructure.Results;
+using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.Controllers.Base
 {

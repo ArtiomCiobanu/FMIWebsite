@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.DataAccess.Services;
-using NewsWebsiteAPI.Models.Dto.Accounts;
-using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extensions;
+using NewsWebsiteAPI.Infrastructure.Constants;
+using NewsWebsiteAPI.Infrastructure.Extensions;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 
 namespace NewsWebsiteAPI.Controllers
 {

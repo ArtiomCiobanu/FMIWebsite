@@ -1,6 +1,6 @@
 ﻿using NewsWebsiteAPI.Infrastructure.Enums;
 
-namespace NewsWebsiteAPI.Infrastructure.Results
+namespace NewsWebsiteAPI.Infrastructure.Models.Results
 {
     public class BaseResult : IResult
     {

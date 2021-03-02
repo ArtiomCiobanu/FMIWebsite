@@ -1,4 +1,4 @@
-﻿namespace NewsWebsiteAPI.Models.Swagger
+﻿namespace NewsWebsiteAPI.Infrastructure.Models.Swagger
 {
     public class SwaggerSchemeConfiguration
     {
