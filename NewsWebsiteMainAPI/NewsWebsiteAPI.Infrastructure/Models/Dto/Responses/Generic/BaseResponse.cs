@@ -1,5 +1,4 @@
 ﻿using NewsWebsiteAPI.Infrastructure.Enums;
-using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic
 {

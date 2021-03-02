@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NewsWebsiteAPI.DataAccess.Entities;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
+using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {

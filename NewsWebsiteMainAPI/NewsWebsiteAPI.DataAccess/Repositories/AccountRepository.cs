@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context;
-using NewsWebsiteAPI.DataAccess.Entities;
+using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Repositories
 {

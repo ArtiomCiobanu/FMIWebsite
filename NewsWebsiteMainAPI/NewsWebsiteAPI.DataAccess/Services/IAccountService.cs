@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
-using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {

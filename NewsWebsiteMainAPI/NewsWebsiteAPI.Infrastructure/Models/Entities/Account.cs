@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NewsWebsiteAPI.DataAccess.Entities
+namespace NewsWebsiteAPI.Infrastructure.Models.Entities
 {
     public class Account
     {
