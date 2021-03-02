@@ -7,8 +7,8 @@ namespace NewsWebsiteAPI.DataAccess.Services
 {
     public interface IAccountService
     {
-        public Task<Result> RegisterAsync(RegistrationModel registrationModel);
-        public Task<Result> LogInAsync(AuthenticationModel authenticationModel);
-        public Task<Result> GetIfExists(Guid id);
+        public Task<BaseResult> RegisterAsync(RegistrationModel registrationModel);
+        public Task<BaseResult> LogInAsync(AuthenticationModel authenticationModel);
+        public Task<BaseResult> GetIfExists(Guid id);
     }
 }

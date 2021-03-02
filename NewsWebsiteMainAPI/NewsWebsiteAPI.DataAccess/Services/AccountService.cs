@@ -25,11 +25,11 @@ namespace NewsWebsiteAPI.DataAccess.Services
             JwtGenerator = jwtGenerator;
         }
 
-        public async Task<Result> RegisterAsync(RegistrationModel registrationModel)
+        public async Task<BaseResult> RegisterAsync(RegistrationModel registrationModel)
         {
             if (await AccountRepository.ExistsWithEmailAsync(registrationModel.Email))
             {
-                return Result.Unauthorized("There is already a user with this email!");
+                return BaseResult.Unauthorized("There is already a user with this email!");
             }
 
             var passwordHash = await HashGenerator.GenerateSaltedHash(registrationModel.Password);
@@ -43,10 +43,10 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 PasswordHash = passwordHash
             });
 
-            return Result.Success("Created");
+            return BaseResult.Success("Created");
         }
 
-        public async Task<Result> LogInAsync(AuthenticationModel authenticationModel)
+        public async Task<BaseResult> LogInAsync(AuthenticationModel authenticationModel)
         {
             var account = await AccountRepository.GetWithEmailAsync(authenticationModel.Email);
 
@@ -58,23 +58,23 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 {
                     var token = JwtGenerator.GenerateToken(account.Id);
 
-                    return Result.Success(token);
+                    return BaseResult.Success(token);
                 }
             }
 
-            return Result.Unauthorized("Email or password is incorrect.");
+            return BaseResult.Unauthorized("Email or password is incorrect.");
         }
 
-        public async Task<Result> GetIfExists(Guid id)
+        public async Task<BaseResult> GetIfExists(Guid id)
         {
             if (await AccountRepository.ExistsWithIdAsync(id))
             {
                 var account = await AccountRepository.GetAsync(id);
 
-                return Result.Success(account.FullName);
+                return BaseResult.Success(account.FullName);
             }
 
-            return Result.Unauthorized("User does not exist.");
+            return BaseResult.Unauthorized("User does not exist.");
         }
     }
 }
