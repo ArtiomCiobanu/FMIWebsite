@@ -65,7 +65,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             return Result.Unauthorized("Email or password is incorrect.");
         }
 
-        public async Task<Result> GetAccount(Guid id)
+        public async Task<Result> GetIfExists(Guid id)
         {
             if (await AccountRepository.ExistsWithIdAsync(id))
             {

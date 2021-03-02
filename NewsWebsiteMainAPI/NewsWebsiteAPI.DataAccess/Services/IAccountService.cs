@@ -9,6 +9,6 @@ namespace NewsWebsiteAPI.DataAccess.Services
     {
         public Task<Result> RegisterAsync(RegistrationModel registrationModel);
         public Task<Result> LogInAsync(AuthenticationModel authenticationModel);
-        public Task<Result> GetAccount(Guid id);
+        public Task<Result> GetIfExists(Guid id);
     }
 }

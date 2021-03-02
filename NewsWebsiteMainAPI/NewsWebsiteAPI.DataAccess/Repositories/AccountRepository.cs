@@ -30,7 +30,7 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
         public async Task<Account> GetAsync(Guid id)
             => await _accountContext.Accounts.FindAsync(id);
 
-        public async Task DeleteWithIdAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var user = await GetAsync(id);
 

@@ -41,7 +41,7 @@ namespace NewsWebsiteAPI.Controllers
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 
-            return await ExecuteAction(() => AccountService.GetAccount(id));
+            return await ExecuteAction(() => AccountService.GetIfExists(id));
         }
     }
 }
