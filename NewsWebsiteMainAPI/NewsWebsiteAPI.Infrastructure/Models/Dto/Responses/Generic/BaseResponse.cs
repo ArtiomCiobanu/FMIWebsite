@@ -24,9 +24,8 @@ namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic
         }
 
         public static BaseResponse Success() => new(ResponseStatus.Success);
-        public static BaseResponse Success(string message) => new(ResponseStatus.Success, message);
         public static BaseResponse Fail() => new(ResponseStatus.InternalServerError);
         public static BaseResponse Fail(string message) => new(ResponseStatus.InternalServerError, message);
-        public static BaseResponse Unauthorized(string message) => new BaseResponse(ResponseStatus.Unauthorized, message);
+        public static BaseResponse Unauthorized(string message) => new(ResponseStatus.Unauthorized, message);
     }
 }

@@ -5,8 +5,8 @@ using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
-using NewsWebsiteAPI.Infrastructure.Models.Results;
 
 namespace NewsWebsiteAPI.DataAccess.Services
 {
@@ -35,16 +35,19 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
             var passwordHash = await HashGenerator.GenerateSaltedHash(registrationRequest.Password);
 
-            await AccountRepository.CreateAsync(new Account
+            var account = new Account
             {
                 Id = Guid.NewGuid(),
                 Email = registrationRequest.Email,
                 FullName = registrationRequest.FullName,
                 RoleId = 0, //UserRole.User
                 PasswordHash = passwordHash
-            });
+            };
 
-            return BaseResponse.Success("Created");
+            await AccountRepository.CreateAsync(account);
+
+            var token = JwtGenerator.GenerateToken(account.Id);
+            return TokenResponse.Success(token);
         }
 
         public async Task<BaseResponse> LogInAsync(AuthenticationRequest authenticationRequest)
@@ -59,7 +62,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 {
                     var token = JwtGenerator.GenerateToken(account.Id);
 
-                    return BaseResponse.Success(token);
+                    return TokenResponse.Success(token);
                 }
             }
 
@@ -72,7 +75,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             {
                 var account = await AccountRepository.GetAsync(id);
 
-                return BaseResponse.Success(account.FullName);
+                return AccountResponse.Success(account.Id, account.FullName);
             }
 
             return BaseResponse.Unauthorized("User does not exist.");
