@@ -6,13 +6,11 @@ namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts
 {
     public class AccountResponse : BaseResponse
     {
-        public Guid Id { get; private set; }
         public string FullName { get; private set; }
 
-        public static AccountResponse Success(Guid id, string fullName) =>
+        public static AccountResponse Success(string fullName) =>
             new()
             {
-                Id = id,
                 Status = ResponseStatus.Success,
                 FullName = fullName
             };

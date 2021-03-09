@@ -75,7 +75,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             {
                 var account = await AccountRepository.GetAsync(id);
 
-                return AccountResponse.Success(account.Id, account.FullName);
+                return AccountResponse.Success(account.FullName);
             }
 
             return BaseResponse.Unauthorized("User does not exist.");
