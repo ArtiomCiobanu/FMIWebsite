@@ -14,7 +14,11 @@ paths:
           description: OK
           content:
             text/plain:
-              schema: {}
+              schema:
+                type: object
+                properties:
+                  Token:
+                    type: string
               examples: {}
         '400':
           description: Bad Request
@@ -43,7 +47,11 @@ paths:
           description: OK
           content:
             text/plain:
-              schema: {}
+              schema:
+                type: object
+                properties:
+                  Token:
+                    type: string
         '400':
           description: Bad Request
         '409':
@@ -77,8 +85,6 @@ paths:
               schema:
                 type: object
                 properties:
-                  UserId:
-                    type: string
                   FullName:
                     type: string
         '400':
