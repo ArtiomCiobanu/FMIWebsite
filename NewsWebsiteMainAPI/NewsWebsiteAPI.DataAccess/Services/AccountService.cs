@@ -5,7 +5,6 @@ using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts;
-using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Services
@@ -26,11 +25,11 @@ namespace NewsWebsiteAPI.DataAccess.Services
             JwtGenerator = jwtGenerator;
         }
 
-        public async Task<BaseResponse> RegisterAsync(RegistrationRequest registrationRequest)
+        public async Task<TokenResponse> RegisterAsync(RegistrationRequest registrationRequest)
         {
             if (await AccountRepository.ExistsWithEmailAsync(registrationRequest.Email))
             {
-                return BaseResponse.Unauthorized("There is already a user with this email!");
+                return TokenResponse.Unauthorized();
             }
 
             var passwordHash = await HashGenerator.GenerateSaltedHash(registrationRequest.Password);
@@ -50,7 +49,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             return TokenResponse.Success(token);
         }
 
-        public async Task<BaseResponse> LogInAsync(AuthenticationRequest authenticationRequest)
+        public async Task<TokenResponse> LogInAsync(AuthenticationRequest authenticationRequest)
         {
             var account = await AccountRepository.GetWithEmailAsync(authenticationRequest.Email);
 
@@ -66,10 +65,10 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 }
             }
 
-            return BaseResponse.Unauthorized("Email or password is incorrect.");
+            return TokenResponse.Unauthorized();
         }
 
-        public async Task<BaseResponse> GetIfExists(Guid id)
+        public async Task<AccountResponse> GetIfExists(Guid id)
         {
             if (await AccountRepository.ExistsWithIdAsync(id))
             {
@@ -78,7 +77,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 return AccountResponse.Success(account.FullName);
             }
 
-            return BaseResponse.Unauthorized("User does not exist.");
+            return AccountResponse.Unauthorized();
         }
     }
 }

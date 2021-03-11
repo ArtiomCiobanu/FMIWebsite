@@ -30,9 +30,10 @@ namespace NewsWebsiteAPI
         {
             services.AddAccountDbContext(Configuration.GetConnectionString("DefaultConnectionString"));
 
+            services.AddGenerators(Configuration);
+            services.AddJwt();
             services.AddRepositories();
             services.AddServices();
-            services.AddGenerators(Configuration);
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

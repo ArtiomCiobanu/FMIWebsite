@@ -22,26 +22,29 @@ namespace NewsWebsiteAPI.Controllers
             AccountService = accountService;
         }
 
-        [HttpPost]
-        [Route("login")]
-        public async Task<ActionResult<string>> LogIn(
-            [Required] [FromBody] AuthenticationRequest request)
-            => await ExecuteAction(() => AccountService.LogInAsync(request));
-
-        [HttpPost]
-        [Route("register")]
+        [HttpPost("register")]
         public async Task<ActionResult<string>> Register(
             [Required] [FromBody] RegistrationRequest request)
-            => await ExecuteAction(() => AccountService.RegisterAsync(request));
+            => await ExecuteAction(
+                () => AccountService.RegisterAsync(request),
+                result => result.Token);
 
-        [HttpGet]
-        [Route("get_account")]
+        [HttpPost("login")]
+        public async Task<ActionResult<string>> LogIn(
+            [Required] [FromBody] AuthenticationRequest request)
+            => await ExecuteAction(
+                () => AccountService.LogInAsync(request),
+                result => result.Token);
+
+        [HttpGet("get_account")]
         [Authorize]
         public async Task<ActionResult<string>> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 
-            return await ExecuteAction(() => AccountService.GetIfExists(id));
+            return await ExecuteAction(
+                () => AccountService.GetIfExists(id),
+                result => result.FullName);
         }
     }
 }

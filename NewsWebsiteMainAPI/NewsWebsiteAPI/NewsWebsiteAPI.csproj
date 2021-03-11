@@ -15,8 +15,6 @@
     <ItemGroup>
       <ProjectReference Include="..\NewsWebsiteAPI.DataAccess\NewsWebsiteAPI.DataAccess.csproj" />
       <ProjectReference Include="..\NewsWebsiteAPI.Infrastructure\NewsWebsiteAPI.Infrastructure.csproj" />
-      <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
-      <ProjectReference Include="..\NewsWebsiteAPI.Shared\NewsWebsiteAPI.Shared.csproj" />
     </ItemGroup>
 
 

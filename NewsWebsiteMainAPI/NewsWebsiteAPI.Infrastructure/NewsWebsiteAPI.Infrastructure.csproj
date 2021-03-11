@@ -5,8 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
-      <ProjectReference Include="..\NewsWebsiteAPI.Shared\NewsWebsiteAPI.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

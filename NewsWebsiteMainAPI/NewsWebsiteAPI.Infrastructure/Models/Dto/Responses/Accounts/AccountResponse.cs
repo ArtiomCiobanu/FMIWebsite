@@ -14,5 +14,11 @@ namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts
                 Status = ResponseStatus.Success,
                 FullName = fullName
             };
+
+        public static AccountResponse Unauthorized() =>
+            new()
+            {
+                Status = ResponseStatus.Success
+            };
     }
 }

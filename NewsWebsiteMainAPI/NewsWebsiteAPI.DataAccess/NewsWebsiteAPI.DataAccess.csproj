@@ -18,7 +18,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\NewsWebsiteAPI.Infrastructure\NewsWebsiteAPI.Infrastructure.csproj" />
-      <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
     </ItemGroup>
 
 </Project>
