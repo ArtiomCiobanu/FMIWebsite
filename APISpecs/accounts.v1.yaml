@@ -15,11 +15,10 @@ paths:
           content:
             text/plain:
               schema:
-                type: object
-                properties:
-                  Token:
-                    type: string
-              examples: {}
+                type: string
+              examples:
+                eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyNmZiNTg2Ni0yNTE0LTQ3M2MtYTQyMy0xNzU1YjAxYTdkNDciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwibmJmIjoxNjE1NDg1NzEwLCJleHAiOjE2MTYwOTA1MTAsImlzcyI6IkZNSVdlYlNpdGVNYWluQVBJIiwiYXVkIjoiVGVzdEs1ZGllbmNlIn0.dYPCQl33NHlgb43um7OXAhcZQpLSX16jtE9uDeSpMqU:
+                  value: string
         '400':
           description: Bad Request
         '401':
@@ -48,10 +47,9 @@ paths:
           content:
             text/plain:
               schema:
-                type: object
-                properties:
-                  Token:
-                    type: string
+                type: string
+              examples:
+                eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIyNmZiNTg2Ni0yNTE0LTQ3M2MtYTQyMy0xNzU1YjAxYTdkNDciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJVc2VyIiwibmJmIjoxNjE1NDg1NzEwLCJleHAiOjE2MTYwOTA1MTAsImlzcyI6IkZNSVdlYlNpdGVNYWluQVBJIiwiYXVkIjoiVGVzdEs1ZGllbmNlIn0.dYPCQl33NHlgb43um7OXAhcZQpLSX16jtE9uDeSpMqU: {}
         '400':
           description: Bad Request
         '409':

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Repositories;
+using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Infrastructure.Generators.Hashing;
 using NewsWebsiteAPI.Infrastructure.Generators.Jwt;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
@@ -39,7 +40,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
                 Id = Guid.NewGuid(),
                 Email = registrationRequest.Email,
                 FullName = registrationRequest.FullName,
-                RoleId = 0, //UserRole.User
+                RoleId = (int) UserRole.User,
                 PasswordHash = passwordHash
             };
 
@@ -59,7 +60,8 @@ namespace NewsWebsiteAPI.DataAccess.Services
 
                 if (account.PasswordHash == passwordHash)
                 {
-                    var token = JwtGenerator.GenerateToken(account.Id);
+                    var role = (UserRole) account.RoleId;
+                    var token = JwtGenerator.GenerateToken(account.Id, role);
 
                     return TokenResponse.Success(token);
                 }
