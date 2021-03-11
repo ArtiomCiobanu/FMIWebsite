@@ -23,16 +23,16 @@ namespace NewsWebsiteAPI.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<string>> Register(
+        public Task<ActionResult<string>> Register(
             [Required] [FromBody] RegistrationRequest request)
-            => await ExecuteAction(
+            => ExecuteAction(
                 () => AccountService.RegisterAsync(request),
                 result => result.Token);
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> LogIn(
+        public Task<ActionResult<string>> LogIn(
             [Required] [FromBody] AuthenticationRequest request)
-            => await ExecuteAction(
+            => ExecuteAction(
                 () => AccountService.LogInAsync(request),
                 result => result.Token);
 
