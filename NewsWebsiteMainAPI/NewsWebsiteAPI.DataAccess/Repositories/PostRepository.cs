@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
@@ -20,24 +21,24 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
             await PostContext.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Post account)
+        public async Task UpdateAsync(Post post)
         {
-            throw new NotImplementedException();
+            PostContext.Posts.Update(post);
+            await PostContext.SaveChangesAsync();
         }
 
-        public Task<Post> GetAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<Post> GetAsync(Guid id)
+            => await PostContext.Posts.FindAsync(id);
 
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var post = await GetAsync(id);
+
+            PostContext.Posts.Remove(post);
+            await PostContext.SaveChangesAsync();
         }
 
         public Task<bool> ExistsWithIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+            => PostContext.Posts.AnyAsync(post => post.Id == id);
     }
 }
