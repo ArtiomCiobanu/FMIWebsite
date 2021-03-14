@@ -19,9 +19,7 @@ namespace NewsWebsiteAPI.Controllers
         [HttpPost("add")]
         public Task<ActionResult<AddPost.Response>> AddPost(
             [Required] [FromBody] AddPost.Command command)
-            => ExecuteAction(
-                () => Mediator.Send(command),
-                response => response);
+            => ExecuteAction(() => Mediator.Send(command));
 
 
         /*[HttpGet]

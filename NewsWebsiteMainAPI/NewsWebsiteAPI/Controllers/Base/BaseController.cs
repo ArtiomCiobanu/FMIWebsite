@@ -40,8 +40,8 @@ namespace NewsWebsiteAPI.Controllers.Base
             return actionResult;
         }
 
-        protected Task<ActionResult<string>> ExecuteAction<TResult>(Func<Task<TResult>> action)
+        protected Task<ActionResult<TResult>> ExecuteAction<TResult>(Func<Task<TResult>> action)
             where TResult : BaseResponse
-            => ExecuteAction(action, data => data.Message);
+            => ExecuteAction(action, data => data);
     }
 }
