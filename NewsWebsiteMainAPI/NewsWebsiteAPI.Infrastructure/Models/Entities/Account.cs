@@ -3,9 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NewsWebsiteAPI.Infrastructure.Models.Entities
 {
-    public class Account
+    public class Account : BaseEntity
     {
-        public Guid Id { get; set; }
         public int RoleId { get; set; }
         public string FullName { get; set; }
 
