@@ -4,12 +4,11 @@ using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
 {
-    public class AccountConfiguration : IEntityTypeConfiguration<Account>
+    public class AccountConfiguration : BaseEntityConfiguration<Account>
     {
-        public void Configure(EntityTypeBuilder<Account> builder)
+        public override void Configure(EntityTypeBuilder<Account> builder)
         {
-            builder
-                .HasKey(account => account.Id);
+            base.Configure(builder);
 
             builder
                 .Property(account => account.RoleId)

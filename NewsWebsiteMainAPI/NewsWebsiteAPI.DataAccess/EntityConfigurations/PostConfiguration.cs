@@ -4,10 +4,12 @@ using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
 {
-    public class PostConfiguration : IEntityTypeConfiguration<Post>
+    public class PostConfiguration : BaseEntityConfiguration<Post>
     {
-        public void Configure(EntityTypeBuilder<Post> builder)
+        public override void Configure(EntityTypeBuilder<Post> builder)
         {
+            base.Configure(builder);
+
             builder
                 .HasKey(p => p.Id);
 
