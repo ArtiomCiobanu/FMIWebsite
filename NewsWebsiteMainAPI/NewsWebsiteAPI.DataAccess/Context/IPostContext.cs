@@ -4,12 +4,8 @@ using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Context
 {
-    public class PostContext : BaseContext, IPostContext
+    public interface IPostContext : IBaseContext
     {
         public DbSet<Post> Posts { get; set; }
-
-        public PostContext(DbContextOptions<PostContext> options) : base(options)
-        {
-        }
     }
 }

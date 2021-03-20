@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NewsWebsiteAPI.DataAccess.Context.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Context
 {
-    public class AccountContext : DbContext
+    public class AccountContext : BaseContext, IAccountContext
     {
-        //To be removed
         public DbSet<Account> Accounts { get; set; }
 
-        public AccountContext(DbContextOptions options) : base(options)
+        public AccountContext(DbContextOptions<AccountContext> options) : base(options)
         {
         }
     }

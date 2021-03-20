@@ -16,6 +16,7 @@ namespace NewsWebsiteAPI.Extensions
         public static void AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
         }
 
         public static void AddServices(this IServiceCollection services)

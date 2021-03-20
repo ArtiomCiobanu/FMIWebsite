@@ -8,9 +8,9 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
 {
     public class PostRepository : IPostRepository
     {
-        private PostContext PostContext { get; }
+        private IPostContext PostContext { get; }
 
-        public PostRepository(PostContext postContext)
+        public PostRepository(IPostContext postContext)
         {
             PostContext = postContext;
         }

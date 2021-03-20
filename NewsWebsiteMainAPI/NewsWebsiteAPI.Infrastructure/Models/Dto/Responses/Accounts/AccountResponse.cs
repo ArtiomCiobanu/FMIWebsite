@@ -1,5 +1,4 @@
-﻿using System;
-using NewsWebsiteAPI.Infrastructure.Enums;
+﻿using NewsWebsiteAPI.Infrastructure.Enums;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 
 namespace NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts
