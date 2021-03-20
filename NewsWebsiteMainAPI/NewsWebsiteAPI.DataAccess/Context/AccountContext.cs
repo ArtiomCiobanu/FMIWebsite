@@ -3,7 +3,7 @@ using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Context
 {
-    public class AccountContext : BaseDbContext<Account>
+    public class AccountContext : DbContext
     {
         //To be removed
         public DbSet<Account> Accounts { get; set; }
