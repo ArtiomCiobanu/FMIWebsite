@@ -41,7 +41,11 @@ namespace NewsWebsiteAPI.DataAccess.Commands
 
         public class Response : BaseResponse
         {
-            public static Response Success() => new() {Status = ResponseStatus.Success};
+            public static Response Success() =>
+                new()
+                {
+                    Status = ResponseStatus.Success
+                };
         }
     }
 }

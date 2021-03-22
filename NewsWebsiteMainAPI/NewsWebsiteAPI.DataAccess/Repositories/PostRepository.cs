@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context;
@@ -40,5 +42,11 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
 
         public Task<bool> ExistsWithIdAsync(Guid id)
             => PostContext.Posts.AnyAsync(post => post.Id == id);
+
+        public async Task<Post[]> GetTopAsync(int amount)
+        {
+            var result = PostContext.Posts.OrderByDescending(x => x.Title).Take(amount).ToArray();
+            return await Task.FromResult(result);
+        }
     }
 }
