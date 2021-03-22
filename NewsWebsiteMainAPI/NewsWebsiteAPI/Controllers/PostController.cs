@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace NewsWebsiteAPI.Controllers
             [Required] [FromBody] AddPost.Command command)
             => ExecuteAction(() => Mediator.Send(command));
 
-        [HttpGet("{limit?}")]
+        [HttpGet("get/{limit?}")]
         public Task<ActionResult<GetPosts.GetPostsResponse>> GetPosts(int limit = 10)
             => ExecuteAction(() => Mediator.Send(
                 new GetPosts.Request
@@ -32,9 +33,13 @@ namespace NewsWebsiteAPI.Controllers
                 }));
 
 
-        /*[HttpGet("{postId}")]
-        public Task<IActionResult> GetPost()
-        {
-        }*/
+        [HttpGet("{postId}")]
+        public Task<ActionResult<GetPostById.GetPostByIdResponse>> GetPost(
+            [Required] [FromRoute] Guid postId)
+            => ExecuteAction(() => Mediator.Send(
+                new GetPostById.Request
+                {
+                    PostId = postId
+                }));
     }
 }
