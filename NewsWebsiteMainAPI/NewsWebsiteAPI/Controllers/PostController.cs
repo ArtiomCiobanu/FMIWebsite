@@ -23,8 +23,8 @@ namespace NewsWebsiteAPI.Controllers
             [Required] [FromBody] AddPost.Command command)
             => ExecuteAction(() => Mediator.Send(command));
 
-        [HttpGet("get_posts/{limit}")]
-        public Task<ActionResult<GetPosts.GetPostsResponse>> GetPosts(int limit = 0)
+        [HttpGet("{limit?}")]
+        public Task<ActionResult<GetPosts.GetPostsResponse>> GetPosts(int limit = 10)
             => ExecuteAction(() => Mediator.Send(
                 new GetPosts.Request
                 {

@@ -19,6 +19,7 @@ namespace NewsWebsiteAPI.DataAccess.Queries
 
         public class Handler : IRequestHandler<Request, GetPostsResponse>
         {
+            private const int MaxLimit = 100;
             private IPostRepository PostRepository { get; }
 
             public Handler(IPostRepository postRepository)
@@ -28,6 +29,11 @@ namespace NewsWebsiteAPI.DataAccess.Queries
 
             public async Task<GetPostsResponse> Handle(Request request, CancellationToken cancellationToken)
             {
+                if (request.Limit > MaxLimit)
+                {
+                    request.Limit = MaxLimit;
+                }
+
                 var posts = await PostRepository.GetTopAsync(request.Limit);
 
                 return posts.Any() ?
