@@ -19,30 +19,17 @@ namespace NewsWebsiteAPI.Controllers
         }
 
         [HttpPost("add")]
-        public Task<ActionResult<AddPost.Response>> AddPost(
+        public Task<ActionResult<AddPost.AddPostResponse>> AddPost(
             [Required] [FromBody] AddPost.Command command)
             => ExecuteAction(() => Mediator.Send(command));
 
-        [HttpGet("{limit}")]
-        public Task<ActionResult<GetPosts.Response>> Test(
-            [Required] [FromRoute] int limit)
+        [HttpGet("get_posts/{limit}")]
+        public Task<ActionResult<GetPosts.GetPostsResponse>> GetPosts(int limit = 0)
             => ExecuteAction(() => Mediator.Send(
                 new GetPosts.Request
                 {
                     Limit = limit
                 }));
-
-        /*ExecuteAction(() => Mediator.Send(
-                new GetPosts.Request
-                {
-                    Limit = limit
-                }));*/
-
-        /*[HttpGet("{amount}")]
-        public Task<ActionResult<GetPosts.Response>> GetPosts(
-                [Required] [FromBody] GetPosts.Request request)
-            //[Required] [FromRoute] int amount)
-            => ExecuteAction(() => Mediator.Send(request));*/
 
 
         /*[HttpGet("{postId}")]

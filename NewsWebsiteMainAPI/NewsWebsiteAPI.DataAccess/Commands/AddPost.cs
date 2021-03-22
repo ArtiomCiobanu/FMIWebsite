@@ -10,13 +10,13 @@ namespace NewsWebsiteAPI.DataAccess.Commands
 {
     public static class AddPost
     {
-        public class Command : IRequest<Response>
+        public class Command : IRequest<AddPostResponse>
         {
             public string Title { get; set; }
             public string Content { get; set; }
         }
 
-        public class Handler : IRequestHandler<Command, Response>
+        public class Handler : IRequestHandler<Command, AddPostResponse>
         {
             private IPostRepository PostRepository { get; }
 
@@ -25,7 +25,7 @@ namespace NewsWebsiteAPI.DataAccess.Commands
                 PostRepository = postRepository;
             }
 
-            public async Task<Response> Handle(Command command, CancellationToken cancellationToken)
+            public async Task<AddPostResponse> Handle(Command command, CancellationToken cancellationToken)
             {
                 var post = new Post
                 {
@@ -35,13 +35,13 @@ namespace NewsWebsiteAPI.DataAccess.Commands
 
                 await PostRepository.CreateAsync(post);
 
-                return Response.Success();
+                return AddPostResponse.Success();
             }
         }
 
-        public class Response : BaseResponse
+        public class AddPostResponse : BaseResponse
         {
-            public static Response Success() =>
+            public static AddPostResponse Success() =>
                 new()
                 {
                     Status = ResponseStatus.Success

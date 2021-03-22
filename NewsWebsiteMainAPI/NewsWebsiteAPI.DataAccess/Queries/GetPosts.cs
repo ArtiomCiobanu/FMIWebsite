@@ -12,12 +12,12 @@ namespace NewsWebsiteAPI.DataAccess.Queries
 {
     public class GetPosts
     {
-        public class Request : IRequest<Response>
+        public class Request : IRequest<GetPostsResponse>
         {
             public int Limit { get; set; }
         }
 
-        public class Handler : IRequestHandler<Request, Response>
+        public class Handler : IRequestHandler<Request, GetPostsResponse>
         {
             private IPostRepository PostRepository { get; }
 
@@ -26,28 +26,28 @@ namespace NewsWebsiteAPI.DataAccess.Queries
                 PostRepository = postRepository;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<GetPostsResponse> Handle(Request request, CancellationToken cancellationToken)
             {
                 var posts = await PostRepository.GetTopAsync(request.Limit);
 
                 return posts.Any() ?
-                    Response.Success(posts) :
-                    Response.NoContent();
+                    GetPostsResponse.Success(posts) :
+                    GetPostsResponse.NoContent();
             }
         }
 
-        public class Response : BaseResponse
+        public class GetPostsResponse : BaseResponse
         {
             public Post[] Posts { get; set; }
 
-            public static Response Success(Post[] posts) =>
+            public static GetPostsResponse Success(Post[] posts) =>
                 new()
                 {
                     Posts = posts,
                     Status = ResponseStatus.Success
                 };
 
-            public static Response NoContent() =>
+            public static GetPostsResponse NoContent() =>
                 new()
                 {
                     //Posts = System.Array.Empty<Post>(),
