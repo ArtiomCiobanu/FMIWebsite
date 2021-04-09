@@ -19,33 +19,33 @@ namespace NewsWebsiteAPI.DataAccess.Repositories
 
         public async Task CreateAsync(Post post)
         {
-            await PostContext.Posts.AddAsync(post);
+            await PostContext.DataSet.AddAsync(post);
             await PostContext.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(Post post)
         {
-            PostContext.Posts.Update(post);
+            PostContext.DataSet.Update(post);
             await PostContext.SaveChangesAsync();
         }
 
         public async Task<Post> GetAsync(Guid id)
-            => await PostContext.Posts.FindAsync(id);
+            => await PostContext.DataSet.FindAsync(id);
 
         public async Task DeleteAsync(Guid id)
         {
             var post = await GetAsync(id);
 
-            PostContext.Posts.Remove(post);
+            PostContext.DataSet.Remove(post);
             await PostContext.SaveChangesAsync();
         }
 
         public Task<bool> ExistsWithIdAsync(Guid id)
-            => PostContext.Posts.AnyAsync(post => post.Id == id);
+            => PostContext.DataSet.AnyAsync(post => post.Id == id);
 
         public async Task<Post[]> GetTopAsync(int amount)
         {
-            var result = PostContext.Posts.OrderByDescending(x => x.Title).Take(amount).ToArray();
+            var result = PostContext.DataSet.OrderByDescending(x => x.Title).Take(amount).ToArray();
             return await Task.FromResult(result);
         }
     }

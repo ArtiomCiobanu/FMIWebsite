@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
@@ -9,6 +10,8 @@ namespace NewsWebsiteAPI.DataAccess.EntityConfigurations
         {
             base.Configure(builder);
 
+            //builder.ToTable("Posts");
+            
             builder
                 .HasKey(p => p.Id);
 

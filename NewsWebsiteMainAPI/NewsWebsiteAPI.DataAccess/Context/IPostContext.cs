@@ -6,6 +6,6 @@ namespace NewsWebsiteAPI.DataAccess.Context
 {
     public interface IPostContext : IBaseContext
     {
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Post> DataSet { get; set; }
     }
 }
