@@ -34,6 +34,7 @@ namespace NewsWebsiteAPI.DataAccess.Commands
                 };
 
                 await PostRepository.CreateAsync(post);
+                await PostRepository.SaveChangesAsync();
 
                 return AddPostResponse.Success();
             }

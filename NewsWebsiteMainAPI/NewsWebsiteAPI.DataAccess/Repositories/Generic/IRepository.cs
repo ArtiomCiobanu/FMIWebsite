@@ -10,6 +10,8 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
         public Task<T> GetAsync(Guid id);
         public Task DeleteAsync(Guid id);
 
+        public Task SaveChangesAsync();
+
         public Task<bool> ExistsWithIdAsync(Guid id);
     }
 }
