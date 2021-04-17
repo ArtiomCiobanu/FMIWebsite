@@ -39,6 +39,9 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
             await EntityContext.SaveChangesAsync();
         }
 
+        public Task SaveChangesAsync()
+            => EntityContext.SaveChangesAsync();
+
         public Task<bool> ExistsWithIdAsync(Guid id)
             => EntityDbSet.AnyAsync(entity => entity.Id == id);
     }

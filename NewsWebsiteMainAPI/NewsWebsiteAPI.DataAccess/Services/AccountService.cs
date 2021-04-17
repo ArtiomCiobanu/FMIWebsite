@@ -45,6 +45,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             };
 
             await AccountRepository.CreateAsync(account);
+            await AccountRepository.SaveChangesAsync();
 
             var token = JwtGenerator.GenerateToken(account.Id);
             return TokenResponse.Success(token);
