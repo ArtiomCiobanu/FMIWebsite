@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.DataAccess.Context.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
@@ -16,8 +18,7 @@ namespace NewsWebsiteAPI.DataAccess.Context
             //     entityType.SetTableName(entityType.DisplayName());
             // }
 
-
-            modelBuilder.Entity<Post>().ToTable("Posts");
+            //modelBuilder.Entity<Post>().ToTable("Posts");
         }
 
         public PostContext(DbContextOptions<PostContext> options) : base(options)
