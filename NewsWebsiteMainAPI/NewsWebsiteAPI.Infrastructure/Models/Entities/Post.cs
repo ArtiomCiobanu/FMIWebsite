@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace NewsWebsiteAPI.Infrastructure.Models.Entities
+﻿namespace NewsWebsiteAPI.Infrastructure.Models.Entities
 {
     //[Table("Posts")]
     public class Post : BaseEntity

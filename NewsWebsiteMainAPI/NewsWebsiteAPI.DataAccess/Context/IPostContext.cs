@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NewsWebsiteAPI.DataAccess.Context.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
 namespace NewsWebsiteAPI.DataAccess.Context
 {
-    public interface IPostContext : IBaseContext
+    public interface IPostContext 
     {
-        public DbSet<Post> DataSet { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

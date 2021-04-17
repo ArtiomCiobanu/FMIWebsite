@@ -9,12 +9,11 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
         where TEntity : BaseEntity
     {
         private DbContext EntityContext { get; }
-        private DbSet<TEntity> EntityDbSet { get; }
+        private DbSet<TEntity> EntityDbSet => EntityContext.Set<TEntity>();
 
         public EfBaseRepository(DbContext entityContext)
         {
             EntityContext = entityContext;
-            EntityDbSet = EntityContext.Set<TEntity>();
         }
 
         public async Task CreateAsync(TEntity entity)
