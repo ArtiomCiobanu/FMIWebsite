@@ -3,33 +3,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Infrastructure.Enums;
-using NewsWebsiteAPI.Infrastructure.Results;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Generic;
 
 namespace NewsWebsiteAPI.Controllers.Base
 {
     public class BaseController : ControllerBase
     {
-        protected async Task<IActionResult> ExecuteAction<TResult, TResponse>(
+        protected async Task<ActionResult<TResponse>> ExecuteAction<TResult, TResponse>(
             Func<Task<TResult>> action,
             Func<TResult, TResponse> dataMethod)
-            where TResult : Result
+            where TResult : BaseResponse
         {
             var result = await action();
 
             var response = dataMethod(result);
 
-            IActionResult actionResult = result.Status switch
+            ActionResult<TResponse> actionResult = result.Status switch
             {
-                ResponseStatus.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError),
+                ResponseStatus.InternalServerError => StatusCode(StatusCodes.Status500InternalServerError, response),
                 ResponseStatus.Success => Ok(response),
                 ResponseStatus.BadRequest => BadRequest(response),
                 ResponseStatus.Conflict => Conflict(response),
-                ResponseStatus.NoContent => NoContent(),
-                ResponseStatus.NotFound => NotFound(),
+                ResponseStatus.NoContent => StatusCode(StatusCodes.Status204NoContent, response),
+                ResponseStatus.NotFound => NotFound(response),
                 ResponseStatus.Unauthorized => Unauthorized(response),
                 ResponseStatus.Accepted => Accepted(response),
                 ResponseStatus.PartialContent => StatusCode(StatusCodes.Status206PartialContent, response),
-                ResponseStatus.Forbidden => Forbid(),
+                ResponseStatus.Forbidden => StatusCode(StatusCodes.Status403Forbidden, response),
                 ResponseStatus.Created => StatusCode(StatusCodes.Status201Created, response),
                 ResponseStatus.TooManyRequests => StatusCode(StatusCodes.Status429TooManyRequests),
                 _ => throw new ArgumentOutOfRangeException(
@@ -40,8 +40,8 @@ namespace NewsWebsiteAPI.Controllers.Base
             return actionResult;
         }
 
-        protected Task<IActionResult> ExecuteAction<TResult>(Func<Task<TResult>> action)
-            where TResult : Result
-            => ExecuteAction(action, data => data.Message);
+        protected Task<ActionResult<TResult>> ExecuteAction<TResult>(Func<Task<TResult>> action)
+            where TResult : BaseResponse
+            => ExecuteAction(action, data => data);
     }
 }

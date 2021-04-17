@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
+using NewsWebsiteAPI.DataAccess.Commands;
+using NewsWebsiteAPI.DataAccess.Context;
 using NewsWebsiteAPI.DataAccess.Extensions;
 using NewsWebsiteAPI.Extensions;
 using NewsWebsiteAPI.Infrastructure.Configurators;
@@ -28,11 +31,18 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAccountDbContext(Configuration.GetConnectionString("DefaultConnectionString"));
+            services.AddDbContextForConnectionString<AccountContext>(
+                Configuration.GetConnectionString("DefaultConnectionString"));
+            services.AddDbContextForConnectionString<PostContext>(
+                Configuration.GetConnectionString("DefaultConnectionString"));
 
+            services.AddScoped<IPostContext, PostContext>();
+            services.AddScoped<IAccountContext, AccountContext>();
+
+            services.AddGenerators(Configuration);
+            services.AddJwt();
             services.AddRepositories();
             services.AddServices();
-            services.AddGenerators(Configuration);
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -54,6 +64,8 @@ namespace NewsWebsiteAPI
                     c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 
             services.AddConfiguredSwagger();
+
+            services.AddMediatR(GetType(), typeof(AddPost));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

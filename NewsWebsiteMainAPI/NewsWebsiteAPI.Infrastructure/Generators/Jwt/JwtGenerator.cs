@@ -2,8 +2,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using NewsWebsiteAPI.Infrastructure.Configurators;
+using NewsWebsiteAPI.Infrastructure.Constants;
 using NewsWebsiteAPI.Infrastructure.Enums;
-using NewsWebsiteAPI.Shared.Consts;
 
 namespace NewsWebsiteAPI.Infrastructure.Generators.Jwt
 {

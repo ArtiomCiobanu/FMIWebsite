@@ -1,9 +1,9 @@
 ﻿using FluentValidation;
-using NewsWebsiteAPI.Models.Dto.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 
 namespace NewsWebsiteAPI.Validators
 {
-    public class AuthenticationModelValidator : AbstractValidator<AuthenticationModel>
+    public class AuthenticationModelValidator : AbstractValidator<AuthenticationRequest>
     {
         public AuthenticationModelValidator()
         {

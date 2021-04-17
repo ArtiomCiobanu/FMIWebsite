@@ -5,12 +5,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\NewsWebsiteAPI.Models\NewsWebsiteAPI.Models.csproj" />
-      <ProjectReference Include="..\NewsWebsiteAPI.Shared\NewsWebsiteAPI.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.8.0" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.9.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="MappingProfiles" />
+      <Folder Include="Models\MappingProfiles" />
     </ItemGroup>
 
 </Project>

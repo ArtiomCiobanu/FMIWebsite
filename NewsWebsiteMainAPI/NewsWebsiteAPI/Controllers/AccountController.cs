@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.DataAccess.Services;
-using NewsWebsiteAPI.Models.Dto.Accounts;
-using NewsWebsiteAPI.Shared.Consts;
-using NewsWebsiteAPI.Shared.Extensions;
+using NewsWebsiteAPI.Infrastructure.Constants;
+using NewsWebsiteAPI.Infrastructure.Extensions;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
 
 namespace NewsWebsiteAPI.Controllers
 {
@@ -22,26 +22,29 @@ namespace NewsWebsiteAPI.Controllers
             AccountService = accountService;
         }
 
-        [HttpPost]
-        [Route("login")]
-        public async Task<IActionResult> LogIn(
-            [Required] [FromBody] AuthenticationModel model)
-            => await ExecuteAction(() => AccountService.LogInAsync(model));
+        [HttpPost("register")]
+        public Task<ActionResult<string>> Register(
+            [Required] [FromBody] RegistrationRequest request)
+            => ExecuteAction(
+                () => AccountService.RegisterAsync(request),
+                result => result.Token);
 
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register(
-            [Required] [FromBody] RegistrationModel model)
-            => await ExecuteAction(() => AccountService.RegisterAsync(model));
+        [HttpPost("login")]
+        public Task<ActionResult<string>> LogIn(
+            [Required] [FromBody] AuthenticationRequest request)
+            => ExecuteAction(
+                () => AccountService.LogInAsync(request),
+                result => result.Token);
 
-        [HttpGet]
-        [Route("get_account")]
+        [HttpGet("get_account")]
         [Authorize]
-        public ActionResult<Guid> GetAccountData()
+        public async Task<ActionResult<string>> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 
-            return Ok(id);
+            return await ExecuteAction(
+                () => AccountService.GetIfExists(id),
+                result => result.FullName);
         }
     }
 }
