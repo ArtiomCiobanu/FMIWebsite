@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsWebsiteAPI.Consts;
+using NewsWebsiteAPI.DataAccess.Context;
+using NewsWebsiteAPI.DataAccess.Extensions;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Infrastructure.Configurators;
@@ -47,6 +49,17 @@ namespace NewsWebsiteAPI.Extensions
 
                 return new HashGenerator(hashConfiguration);
             });
+        }
+
+        public static void AddAndConfigureDbContexts(this IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContextForConnectionString<AccountContext>(
+                configuration.GetConnectionString("DefaultConnectionString"));
+            services.AddDbContextForConnectionString<PostContext>(
+                configuration.GetConnectionString("DefaultConnectionString"));
+
+            services.AddScoped<IPostContext, PostContext>();
+            services.AddScoped<IAccountContext, AccountContext>();
         }
     }
 }

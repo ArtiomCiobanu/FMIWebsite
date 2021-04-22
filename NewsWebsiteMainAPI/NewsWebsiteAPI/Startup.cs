@@ -10,8 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsWebsiteAPI.Configuration;
 using NewsWebsiteAPI.DataAccess.Commands;
-using NewsWebsiteAPI.DataAccess.Context;
-using NewsWebsiteAPI.DataAccess.Extensions;
 using NewsWebsiteAPI.Extensions;
 using NewsWebsiteAPI.Infrastructure.Configurators;
 
@@ -31,14 +29,7 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContextForConnectionString<AccountContext>(
-                Configuration.GetConnectionString("DefaultConnectionString"));
-            services.AddDbContextForConnectionString<PostContext>(
-                Configuration.GetConnectionString("DefaultConnectionString"));
-
-            services.AddScoped<IPostContext, PostContext>();
-            services.AddScoped<IAccountContext, AccountContext>();
-
+            services.AddAndConfigureDbContexts(Configuration);
             services.AddGenerators(Configuration);
             services.AddJwt();
             services.AddRepositories();

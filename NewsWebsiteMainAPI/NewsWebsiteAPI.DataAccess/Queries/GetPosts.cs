@@ -35,15 +35,13 @@ namespace NewsWebsiteAPI.DataAccess.Queries
 
                 var posts = await PostRepository.GetTopAsync(request.Limit);
 
-                return posts.Any() ?
-                    GetPostsResponse.Success(posts) :
-                    GetPostsResponse.NoContent();
+                return posts.Any() ? GetPostsResponse.Success(posts) : GetPostsResponse.NoContent();
             }
         }
 
         public class GetPostsResponse : BaseResponse
         {
-            public Post[] Posts { get; set; }
+            public Post[] Posts { get; private set; }
 
             public static GetPostsResponse Success(Post[] posts) =>
                 new()
