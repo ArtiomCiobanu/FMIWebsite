@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using NewsWebsiteAPI.DataAccess.Context;
+using NewsWebsiteAPI.DataAccess.Contexts;
 using NewsWebsiteAPI.DataAccess.Repositories.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 

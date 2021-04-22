@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
-namespace NewsWebsiteAPI.DataAccess.Context
+namespace NewsWebsiteAPI.DataAccess.Contexts
 {
     public interface IPostContext 
     {

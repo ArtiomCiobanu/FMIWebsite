@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsWebsiteAPI.Consts;
-using NewsWebsiteAPI.DataAccess.Context;
+using NewsWebsiteAPI.DataAccess.Contexts;
 using NewsWebsiteAPI.DataAccess.Extensions;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.DataAccess.Services;

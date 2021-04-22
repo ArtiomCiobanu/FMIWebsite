@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using NewsWebsiteAPI.DataAccess.Context;
+using NewsWebsiteAPI.DataAccess.Contexts;
 using NewsWebsiteAPI.DataAccess.Repositories.Generic;
 using NewsWebsiteAPI.Infrastructure.Models.Entities;
 
