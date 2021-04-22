@@ -1,6 +1,5 @@
 ﻿namespace NewsWebsiteAPI.Infrastructure.Models.Entities
 {
-    //[Table("Posts")]
     public class Post : BaseEntity
     {
         public string Title { get; set; }
