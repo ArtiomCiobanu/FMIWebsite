@@ -22,20 +22,24 @@ namespace NewsWebsiteAPI.Infrastructure.Generators.Jwt
             var signingCredentials = JwtConfigurator.GetSigningCredentials();
 
             var currentDateTime = DateTime.UtcNow;
+            var expirationDateTime = currentDateTime.AddDays(jwtConfiguration.TokenLifetime);
+            
+            Claim[] claims =
+            {
+                new(AppClaimTypes.UserId, userId.ToString()),
+                new(AppClaimTypes.UserRole, userRole.ToString())
+            };
 
             var jwt = new JwtSecurityToken(
                 jwtConfiguration.Issuer,
                 jwtConfiguration.Audience,
-                new[]
-                {
-                    new Claim(AppClaimTypes.UserId, userId.ToString()),
-                    new Claim(AppClaimTypes.UserRole, userRole.ToString())
-                },
+                claims,
                 currentDateTime,
-                currentDateTime.AddDays(jwtConfiguration.TokenLifetime),
+                expirationDateTime,
                 signingCredentials);
 
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
+            var finalToken = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return finalToken;
         }
     }
 }
