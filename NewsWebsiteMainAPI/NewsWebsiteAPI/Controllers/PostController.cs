@@ -2,7 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NewsWebsiteAPI.Consts;
 using NewsWebsiteAPI.Controllers.Base;
 using NewsWebsiteAPI.DataAccess.Commands;
 using NewsWebsiteAPI.DataAccess.Queries;
@@ -20,6 +22,7 @@ namespace NewsWebsiteAPI.Controllers
         }
 
         [HttpPost("add")]
+        [Authorize(Policy = PolicyNames.RequireAdministratorRole)]
         public Task<ActionResult<AddPost.AddPostResponse>> AddPost(
             [Required] [FromBody] AddPost.Command command)
             => ExecuteAction(() => Mediator.Send(command));

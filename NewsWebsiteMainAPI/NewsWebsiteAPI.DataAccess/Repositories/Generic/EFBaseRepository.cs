@@ -19,13 +19,11 @@ namespace NewsWebsiteAPI.DataAccess.Repositories.Generic
         public async Task CreateAsync(TEntity entity)
         {
             await EntityDbSet.AddAsync(entity);
-            await EntityContext.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(TEntity entity)
+        public Task UpdateAsync(TEntity entity)
         {
-            EntityDbSet.Update(entity);
-            await EntityContext.SaveChangesAsync();
+            return Task.FromResult(EntityDbSet.Update(entity));
         }
 
         public async Task<TEntity> GetAsync(Guid id)
