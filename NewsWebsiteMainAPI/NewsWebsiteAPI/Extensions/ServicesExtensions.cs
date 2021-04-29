@@ -27,7 +27,7 @@ namespace NewsWebsiteAPI.Extensions
         public static void AddJwt(this IServiceCollection services)
         {
             services.AddScoped<IJwtGenerator, JwtGenerator>();
-            services.AddScoped<IJwtHandler, JwtHandler>();
+            services.AddScoped<IJwtReader, JwtReader>();
         }
 
         public static void AddGenerators(this IServiceCollection services, IConfiguration configuration)

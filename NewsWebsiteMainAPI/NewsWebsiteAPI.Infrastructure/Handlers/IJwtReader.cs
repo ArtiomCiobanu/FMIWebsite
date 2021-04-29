@@ -1,6 +1,6 @@
 namespace NewsWebsiteAPI.Infrastructure.Handlers
 {
-    public interface IJwtHandler
+    public interface IJwtReader
     {
         string GetUserIdFromToken(string token);
         string GetUserRoleFromToken(string token);

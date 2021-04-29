@@ -14,12 +14,12 @@ namespace NewsWebsiteAPI.Controllers
     [Route("[controller]/[action]")]
     public class JwtTestController : ControllerBase
     {
-        private IJwtHandler JwtHandler { get; }
+        private IJwtReader JwtReader { get; }
         private IJwtGenerator JwtGenerator { get; }
 
-        public JwtTestController(IJwtHandler jwtHandler, IJwtGenerator jwtGenerator)
+        public JwtTestController(IJwtReader jwtReader, IJwtGenerator jwtGenerator)
         {
-            JwtHandler = jwtHandler;
+            JwtReader = jwtReader;
             JwtGenerator = jwtGenerator;
         }
 
@@ -58,8 +58,8 @@ namespace NewsWebsiteAPI.Controllers
         [HttpGet]
         public IActionResult GetTokenData(string token)
         {
-            var id = JwtHandler.GetUserIdFromToken(token);
-            var role = JwtHandler.GetUserRoleFromToken(token);
+            var id = JwtReader.GetUserIdFromToken(token);
+            var role = JwtReader.GetUserRoleFromToken(token);
 
             var result = $"ID: {id}\nRole: {role}";
             return Ok(result);

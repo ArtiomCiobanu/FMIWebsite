@@ -4,7 +4,7 @@ using NewsWebsiteAPI.Infrastructure.Extensions;
 
 namespace NewsWebsiteAPI.Infrastructure.Handlers
 {
-    public class JwtHandler : IJwtHandler
+    public class JwtReader : IJwtReader
     {
         public string GetUserIdFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserId);
         public string GetUserRoleFromToken(string token) => GetUserDataFromToken(token, AppClaimTypes.UserRole);

@@ -33,7 +33,7 @@ paths:
                 Content:
                   type: string
     parameters: []
-  /posts:
+  '/posts/get/{limit}':
     get:
       summary: Your GET endpoint
       tags: []
@@ -62,7 +62,12 @@ paths:
           in: header
           name: Authorization
           description: 'Bearer {token}'
-    parameters: []
+    parameters:
+      - schema:
+          type: integer
+        name: limit
+        in: path
+        required: true
   '/posts/{postId}':
     parameters:
       - schema:
