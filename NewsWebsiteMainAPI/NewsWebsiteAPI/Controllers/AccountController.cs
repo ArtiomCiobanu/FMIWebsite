@@ -8,6 +8,7 @@ using NewsWebsiteAPI.DataAccess.Services;
 using NewsWebsiteAPI.Infrastructure.Constants;
 using NewsWebsiteAPI.Infrastructure.Extensions;
 using NewsWebsiteAPI.Infrastructure.Models.Dto.Requests.Accounts;
+using NewsWebsiteAPI.Infrastructure.Models.Dto.Responses.Accounts;
 
 namespace NewsWebsiteAPI.Controllers
 {
@@ -38,13 +39,13 @@ namespace NewsWebsiteAPI.Controllers
 
         [HttpGet("get_account")]
         [Authorize]
-        public async Task<ActionResult<string>> GetAccount()
+        public async Task<ActionResult<AccountResponse>> GetAccount()
         {
             var id = Guid.Parse(User.GetClaim(AppClaimTypes.UserId).Value);
 
             return await ExecuteAction(
                 () => AccountService.GetIfExists(id),
-                result => result.FullName);
+                result => result);
         }
     }
 }
