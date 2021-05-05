@@ -2,17 +2,17 @@
 {
     public enum ResponseStatus
     {
-        InternalServerError = -1,
-        Success = 1,
-        BadRequest = 2,
-        Conflict = 3,
-        NoContent = 4,
-        NotFound = 5,
-        Unauthorized = 6,
-        Created = 7,
-        Accepted = 8,
-        PartialContent = 9,
-        Forbidden = 10,
-        TooManyRequests = 429
+        Success = 200,
+        Created = 201,
+        Accepted = 202,
+        NoContent = 204,
+        PartialContent = 206,
+        BadRequest = 400,
+        Conflict = 409,
+        NotFound = 404,
+        Unauthorized = 401,
+        Forbidden = 403,
+        TooManyRequests = 429,
+        InternalServerError = 500
     }
 }
