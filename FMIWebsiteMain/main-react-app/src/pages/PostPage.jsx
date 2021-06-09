@@ -11,11 +11,10 @@ export const PostPage = (props) => {
   const [item, setItem] = useState();
 
   const loadError = (mes) => message.error(mes);
+  const postId = props.match.params.post_id;
 
   useEffect(() => {
-    fetch(
-      `https://jsonplaceholder.typicode.com/posts/${props.match.params.post_id}`
-    )
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
       .then((res) => res.json())
       .then(
         (result) => {
@@ -29,13 +28,15 @@ export const PostPage = (props) => {
           loadError(error.toString());
         }
       );
-  }, []);
+  }, [postId]);
 
   if (errorMessage) {
     return (
       <Content style={{ padding: "0 50px" }}>
         <Breadcrumb style={{ margin: "16px 0" }}>
-          <Breadcrumb.Item>Главная</Breadcrumb.Item>
+          <Breadcrumb.Item>
+            <Link path="/">Главная</Link>
+          </Breadcrumb.Item>
           <Breadcrumb.Item>
             <Link path="/">Новости</Link>
           </Breadcrumb.Item>
@@ -50,7 +51,7 @@ export const PostPage = (props) => {
           <>
             <Breadcrumb style={{ margin: "16px 0" }}>
               <Breadcrumb.Item>
-                <Link to="/">Глввная</Link>
+                <Link to="/">Главная</Link>
               </Breadcrumb.Item>
               <Breadcrumb.Item>
                 <Link to="/">Новости</Link>

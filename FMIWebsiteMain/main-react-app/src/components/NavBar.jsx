@@ -33,13 +33,22 @@ export const NavBar = () => {
       }}
     >
       <div className="logo" />
-      <Button
-        type="primary"
-        size="large"
-        onClick={() => setIsModalVisible(true)}
-      >
-        Войти
-      </Button>
+      <div>
+        <Button
+          href="/posts/add-new-post"
+          size="large"
+          style={{ marginRight: "20px" }}
+        >
+          Добавить публикацию
+        </Button>
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => setIsModalVisible(true)}
+        >
+          Войти
+        </Button>
+      </div>
       <Modal
         title="FMI Account"
         visible={isModalVisible}
@@ -58,6 +67,7 @@ export const NavBar = () => {
         <Input
           value={emailValue}
           placeholder="Enter email"
+          className="mb-15"
           onChange={(e) => setEmailValue(e.target.value)}
         />
         {emailValidation && (
@@ -70,6 +80,7 @@ export const NavBar = () => {
         <Input.Password
           value={passwordValue}
           placeholder="Enter password"
+          className="mb-15"
           onChange={(e) => setPasswordValue(e.target.value)}
         />
         {passwordValidation && (

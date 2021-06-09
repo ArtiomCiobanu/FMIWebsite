@@ -17,6 +17,12 @@
 .mr-8 {
   margin-left: 8px;
 }
+.mb-15 {
+  margin-bottom: 15px;
+}
+textarea {
+  resize: none;
+}
 .post-body-text {
   display: block;
   white-space: nowrap;
