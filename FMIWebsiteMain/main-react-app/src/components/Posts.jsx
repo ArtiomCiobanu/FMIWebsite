@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Card, Alert, Typography } from "antd";
 
 export const Posts = ({ posts }) => {
@@ -19,8 +20,8 @@ export const Posts = ({ posts }) => {
               title={
                 <Typography.Title level={4}>{post.title}</Typography.Title>
               }
-              extra={<a href="#">Читать</a>}
-              style={{ width: "70%", marginBottom: "20px" }}
+              extra={<Link to="/post">Читать</Link>}
+              className="post-card"
             >
               <span className="post-body-text">{post.body}</span>
             </Card>
