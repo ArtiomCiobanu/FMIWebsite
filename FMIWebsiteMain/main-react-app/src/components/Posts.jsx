@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Alert } from "antd";
+import { Card, Alert, Typography } from "antd";
 
 export const Posts = ({ posts }) => {
   if (posts) {
@@ -16,7 +16,9 @@ export const Posts = ({ posts }) => {
           return (
             <Card
               key={`${index + post.title}`}
-              title={post.title}
+              title={
+                <Typography.Title level={4}>{post.title}</Typography.Title>
+              }
               extra={<a href="#">Читать</a>}
               style={{ width: "70%", marginBottom: "20px" }}
             >

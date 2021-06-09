@@ -41,7 +41,7 @@ export const NavBar = () => {
         Войти
       </Button>
       <Modal
-        title="FMI Student"
+        title="FMI Account"
         visible={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={[
