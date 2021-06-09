@@ -40,3 +40,9 @@ textarea {
   -webkit-box-shadow: 0px 7px 15px -1px rgba(176, 176, 176, 0.75);
   -moz-box-shadow: 0px 7px 15px -1px rgba(176, 176, 176, 0.75);
 }
+.title-header {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 25px;
+  text-overflow: ellipsis;
+}

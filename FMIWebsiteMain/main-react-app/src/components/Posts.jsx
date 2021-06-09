@@ -16,7 +16,11 @@ export const Posts = (props) => {
         return (
           <Card
             key={`${index + post.title}`}
-            title={<Typography.Title level={4}>{post.title}</Typography.Title>}
+            title={
+              <Typography.Title className="title-header" level={4}>
+                {post.title}
+              </Typography.Title>
+            }
             extra={<Link to={`/posts/${post.id}`}>Читать</Link>}
             className="post-card"
           >
