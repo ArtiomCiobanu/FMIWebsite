@@ -32,7 +32,7 @@ export const MainPostsPage = () => {
 
   if (errorMessage) {
     return (
-      <Layout className="layout">
+      <>
         <NavBar />
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
@@ -40,11 +40,11 @@ export const MainPostsPage = () => {
           </Breadcrumb>
           <Typography.Title>Новости</Typography.Title>
         </Content>
-      </Layout>
+      </>
     );
   } else {
     return (
-      <Layout className="layout">
+      <>
         <NavBar />
         <Content style={{ padding: "0 50px" }}>
           <Breadcrumb style={{ margin: "16px 0" }}>
@@ -66,7 +66,7 @@ export const MainPostsPage = () => {
             <Posts posts={items} />
           )}
         </Content>
-      </Layout>
+      </>
     );
   }
 };
