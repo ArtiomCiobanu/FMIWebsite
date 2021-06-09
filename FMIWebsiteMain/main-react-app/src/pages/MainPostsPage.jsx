@@ -44,7 +44,7 @@ export const MainPostsPage = () => {
         <Breadcrumb style={{ margin: "16px 0" }}>
           <Breadcrumb.Item>Главная</Breadcrumb.Item>
         </Breadcrumb>
-        <Typography.Title>Новости</Typography.Title>
+        <Typography.Title>Новости...</Typography.Title>
         {!isLoaded ? (
           <div
             style={{
