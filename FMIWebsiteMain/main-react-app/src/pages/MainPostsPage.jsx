@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Layout, Breadcrumb, Typography, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-import { NavBar } from "../components/NavBar";
 import { Posts } from "../components/Posts";
 
 const { Content } = Layout;
@@ -32,41 +31,35 @@ export const MainPostsPage = () => {
 
   if (errorMessage) {
     return (
-      <>
-        <NavBar />
-        <Content style={{ padding: "0 50px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>Главная</Breadcrumb.Item>
-          </Breadcrumb>
-          <Typography.Title>Новости</Typography.Title>
-        </Content>
-      </>
+      <Content style={{ padding: "0 50px" }}>
+        <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb.Item>Главная</Breadcrumb.Item>
+        </Breadcrumb>
+        <Typography.Title>Новости</Typography.Title>
+      </Content>
     );
   } else {
     return (
-      <>
-        <NavBar />
-        <Content style={{ padding: "0 50px" }}>
-          <Breadcrumb style={{ margin: "16px 0" }}>
-            <Breadcrumb.Item>Главная</Breadcrumb.Item>
-          </Breadcrumb>
-          <Typography.Title>Новости</Typography.Title>
-          {!isLoaded ? (
-            <div
-              style={{
-                height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <LoadingOutlined style={{ fontSize: "40px", color: "purple" }} />
-            </div>
-          ) : (
-            <Posts posts={items} />
-          )}
-        </Content>
-      </>
+      <Content style={{ padding: "0 50px" }}>
+        <Breadcrumb style={{ margin: "16px 0" }}>
+          <Breadcrumb.Item>Главная</Breadcrumb.Item>
+        </Breadcrumb>
+        <Typography.Title>Новости</Typography.Title>
+        {!isLoaded ? (
+          <div
+            style={{
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <LoadingOutlined style={{ fontSize: "40px", color: "purple" }} />
+          </div>
+        ) : (
+          <Posts posts={items} />
+        )}
+      </Content>
     );
   }
 };
