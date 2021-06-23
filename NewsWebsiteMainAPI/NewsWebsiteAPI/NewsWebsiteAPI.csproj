@@ -4,6 +4,7 @@
         <TargetFramework>net5.0</TargetFramework>
         <LangVersion>9</LangVersion>
         <RootNamespace>NewsWebsiteAPI</RootNamespace>
+        <UserSecretsId>8826d001-2c08-4e5b-b59e-26ba91b73658</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>

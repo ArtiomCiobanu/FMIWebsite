@@ -32,9 +32,9 @@ namespace NewsWebsiteAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContextForConnectionString<AccountContext>(
-                Configuration.GetConnectionString("DefaultConnectionString"));
+                Configuration.GetConnectionString("AWSConnectionString"));
             services.AddDbContextForConnectionString<PostContext>(
-                Configuration.GetConnectionString("DefaultConnectionString"));
+                Configuration.GetConnectionString("AWSConnectionString"));
 
             services.AddScoped<IPostContext, PostContext>();
             services.AddScoped<IAccountContext, AccountContext>();

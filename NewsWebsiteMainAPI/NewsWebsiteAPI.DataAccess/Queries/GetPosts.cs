@@ -18,6 +18,8 @@ namespace NewsWebsiteAPI.DataAccess.Queries
 
         public class Handler : IRequestHandler<Request, GetPostsResponse>
         {
+            private Unit u = new Unit();
+            
             private const int MaxLimit = 100;
             private IPostRepository PostRepository { get; }
 
