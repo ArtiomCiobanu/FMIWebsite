@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using NewsWebsiteAPI.Consts;
 using NewsWebsiteAPI.Controllers.Base;
@@ -11,6 +12,7 @@ using NewsWebsiteAPI.DataAccess.Queries;
 
 namespace NewsWebsiteAPI.Controllers
 {
+    [DisableCors]
     [Route("posts")]
     public class PostController : BaseController
     {

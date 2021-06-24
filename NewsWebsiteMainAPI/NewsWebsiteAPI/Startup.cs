@@ -31,10 +31,12 @@ namespace NewsWebsiteAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddDbContextForConnectionString<AccountContext>(
-                Configuration.GetConnectionString("AWSConnectionString"));
+                Configuration.GetConnectionString("DefaultConnectionString"));
             services.AddDbContextForConnectionString<PostContext>(
-                Configuration.GetConnectionString("AWSConnectionString"));
+                Configuration.GetConnectionString("DefaultConnectionString"));
 
             services.AddScoped<IPostContext, PostContext>();
             services.AddScoped<IAccountContext, AccountContext>();
@@ -84,6 +86,8 @@ namespace NewsWebsiteAPI
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
