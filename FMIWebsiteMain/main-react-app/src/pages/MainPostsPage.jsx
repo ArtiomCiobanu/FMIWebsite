@@ -14,10 +14,16 @@ export const MainPostsPage = () => {
     const loadError = (mes) => message.error(mes);
 
     useEffect(() => {
-        fetch(`${config.HOST}/posts/get`, {mode: "no-cors"})
+        fetch(`${config.HOST}/posts/get`,
+            {
+                headers: {
+                    "Content-Type": "text/plain"
+                }
+            })
             .then((res) => res.json())
-            .then(
-                (result) => {
+            .then((result) => {
+                    console.log(result);
+
                     setIsLoaded(true);
                     setItems(result.data);
                 },

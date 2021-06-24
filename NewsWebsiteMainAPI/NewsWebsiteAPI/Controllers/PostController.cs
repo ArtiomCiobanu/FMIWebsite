@@ -12,7 +12,8 @@ using NewsWebsiteAPI.DataAccess.Queries;
 
 namespace NewsWebsiteAPI.Controllers
 {
-    [DisableCors]
+    //[DisableCors]
+    [EnableCors]
     [Route("posts")]
     public class PostController : BaseController
     {
