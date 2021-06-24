@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Layout, Breadcrumb, Typography, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import { config } from "../config";
 
 const { Content } = Layout;
 
@@ -14,7 +15,7 @@ export const PostPage = (props) => {
   const postId = props.match.params.post_id;
 
   useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${postId}`)
+    fetch(`${config.HOST}/posts/${postId}`)
       .then((res) => res.json())
       .then(
         (result) => {

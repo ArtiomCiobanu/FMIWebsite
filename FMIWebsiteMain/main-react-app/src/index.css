@@ -5,10 +5,11 @@
 }
 .logo {
   float: left;
-  width: 120px;
-  height: 31px;
+  width: 85px;
+  height: 55px;
   margin: 16px 24px 16px 0;
-  background: rgba(255, 255, 255, 0.3);
+  background: url("https://www.eduopinions.com/wp-content/uploads/2017/08/Moldova-State-University-USM-logo-350x250.png")
+    0 0/100% 100% no-repeat;
 }
 .ant-row-rtl .logo {
   float: right;
@@ -43,6 +44,6 @@ textarea {
 .title-header {
   white-space: nowrap;
   overflow: hidden;
-  padding: 25px;
+  padding-right: 25px;
   text-overflow: ellipsis;
 }

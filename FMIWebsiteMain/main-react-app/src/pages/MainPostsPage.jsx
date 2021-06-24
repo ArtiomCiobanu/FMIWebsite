@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Layout, Breadcrumb, Typography, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { Posts } from "../components/Posts";
+import { config } from "../config";
 
 const { Content } = Layout;
 
@@ -13,7 +14,7 @@ export const MainPostsPage = () => {
   const loadError = (mes) => message.error(mes);
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch(`${config.HOST}/posts/get`)
       .then((res) => res.json())
       .then(
         (result) => {

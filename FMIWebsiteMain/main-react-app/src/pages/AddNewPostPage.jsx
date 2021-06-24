@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Layout, Breadcrumb, Typography, Input, message, Button } from "antd";
 
 const { Content } = Layout;
@@ -9,6 +9,8 @@ export const AddNewPostPage = (props) => {
   const [bodyValue, setBodyValue] = useState("");
   const [titleValidation, setTitleValidation] = useState(false);
   const [bodyValidation, setBodyValidation] = useState(false);
+
+  const history = useHistory();
 
   const loadError = (mes) => message.error(mes);
 
@@ -22,6 +24,9 @@ export const AddNewPostPage = (props) => {
       setBodyValidation(true);
     } else {
       setBodyValidation(false);
+    }
+    if (titleValidation && bodyValidation) {
+      history.push("/");
     }
   };
 

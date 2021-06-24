@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Layout, Button, Modal, Input, Typography, message } from "antd";
+import { Layout, Button, Modal, Input, Typography } from "antd";
 
-const { Header } = Layout;
-const { Text } = Typography;
+const { Header } = Layout; // Layout.Header === Hader
+const { Text } = Typography; // Typography.Text === Text
 
 export const NavBar = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -21,6 +21,13 @@ export const NavBar = () => {
       setPasswordValidation(true);
     } else {
       setPasswordValidation(false);
+    }
+
+    if (emailValidation && passwordValidation) {
+      console.log("dsadsad");
+      setIsModalVisible(false);
+      setEmailValue("");
+      setPasswordValue("");
     }
   };
 
@@ -66,26 +73,30 @@ export const NavBar = () => {
         <Text>Email</Text>
         <Input
           value={emailValue}
-          placeholder="Enter email"
+          placeholder="Введите email"
           className="mb-15"
           onChange={(e) => setEmailValue(e.target.value)}
         />
         {emailValidation && (
           <>
-            <Typography.Text type="danger">*Enter email</Typography.Text>
+            <Typography.Text type="danger">
+              *Это обязательное поле
+            </Typography.Text>
             <br />
           </>
         )}
-        <Text>Password</Text>
+        <Text>Пароль</Text>
         <Input.Password
           value={passwordValue}
-          placeholder="Enter password"
+          placeholder="Введите пароль"
           className="mb-15"
           onChange={(e) => setPasswordValue(e.target.value)}
         />
         {passwordValidation && (
           <>
-            <Typography.Text type="danger">*Enter password</Typography.Text>
+            <Typography.Text type="danger">
+              *Это обязательное поле
+            </Typography.Text>
             <br />
           </>
         )}
