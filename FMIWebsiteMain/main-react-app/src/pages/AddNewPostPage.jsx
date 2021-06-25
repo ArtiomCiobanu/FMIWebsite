@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Layout, Breadcrumb, Typography, Input, message, Button } from "antd";
+import { config } from "../config";
 
 const { Content } = Layout;
 
@@ -15,6 +16,11 @@ export const AddNewPostPage = (props) => {
   const loadError = (mes) => message.error(mes);
 
   const validationHandle = () => {
+    const payload = JSON.stringify({
+      title: titleValue,
+      content: bodyValue,
+    });
+
     if (titleValue === "") {
       setTitleValidation(true);
     } else {
@@ -25,6 +31,24 @@ export const AddNewPostPage = (props) => {
     } else {
       setBodyValidation(false);
     }
+
+    fetch(`${config.HOST}/posts/add`, {
+      method: "POST",
+      // mode: "no-cors",
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxMTY1YWJlZS0zZWUwLTQ1YmYtYjljNi01Mjg0MjU0NDY4OTciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIm5iZiI6MTYyNDY1MzI3MSwiZXhwIjoxNjI1MjU4MDcxLCJpc3MiOiJGTUlXZWJTaXRlTWFpbkFQSSIsImF1ZCI6IlRlc3RBdWRpZW5jZSJ9.1pQ9vO7iak2kld4o4Z8oOHX7Me106aa5aQy91q0sEyU",
+      },
+      body: payload,
+    }).then(
+      (result) => {
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
     if (titleValidation && bodyValidation) {
       history.push("/");
     }

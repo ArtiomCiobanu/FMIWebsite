@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Layout, Button, Modal, Input, Typography } from "antd";
+import { config } from "../config";
 
 const { Header } = Layout; // Layout.Header === Hader
 const { Text } = Typography; // Typography.Text === Text
@@ -12,6 +13,13 @@ export const NavBar = () => {
   const [passwordValidation, setPasswordValidation] = useState(false);
 
   const validationHandle = () => {
+    // const payload = JSON.stringify({
+    //   email: emailValue,
+    //   password: passwordValue,
+    // });
+
+    // console.log(payload);
+
     if (emailValue === "") {
       setEmailValidation(true);
     } else {
@@ -22,6 +30,24 @@ export const NavBar = () => {
     } else {
       setPasswordValidation(false);
     }
+
+    // fetch(`${config.HOST}/accounts/login`, {
+    //   method: "POST",
+    //   mode: "no-cors",
+    //   // headers: {
+    //   //   "Content-Type": "application/json",
+    //   // },
+    //   body: payload,
+    // })
+    //   // .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       console.log(result);
+    //     },
+    //     (error) => {
+    //       console.log(error);
+    //     }
+    //   );
 
     if (emailValidation && passwordValidation) {
       console.log("dsadsad");
@@ -65,7 +91,7 @@ export const NavBar = () => {
             Войти
           </Button>,
           <span className="mr-8">или</span>,
-          <Button key="register" className="mr-8" onClick={validationHandle}>
+          <Button key="register" className="mr-8">
             Зарегистрироваться
           </Button>,
         ]}

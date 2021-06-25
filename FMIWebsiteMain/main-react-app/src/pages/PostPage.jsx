@@ -20,7 +20,7 @@ export const PostPage = (props) => {
       .then(
         (result) => {
           setIsLoaded(true);
-          setItem(result);
+          setItem(result.post);
         },
         (error) => {
           console.log(error);
@@ -74,7 +74,7 @@ export const PostPage = (props) => {
             <LoadingOutlined style={{ fontSize: "40px", color: "purple" }} />
           </div>
         ) : item ? (
-          <Typography.Paragraph>{item.body}</Typography.Paragraph>
+          <Typography.Paragraph>{item.content}</Typography.Paragraph>
         ) : (
           "nothing to display"
         )}
