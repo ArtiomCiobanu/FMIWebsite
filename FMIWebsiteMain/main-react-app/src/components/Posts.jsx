@@ -24,7 +24,7 @@ export const Posts = (props) => {
             extra={<Link to={`/posts/${post.id}`}>Читать</Link>}
             className="post-card"
           >
-            <span className="post-body-text">{post.body}</span>
+            <span className="post-body-text">{post.content}</span>
           </Card>
         );
       })}
