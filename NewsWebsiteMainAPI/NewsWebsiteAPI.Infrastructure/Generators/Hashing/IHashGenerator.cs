@@ -4,6 +4,6 @@ namespace NewsWebsiteAPI.Infrastructure.Generators.Hashing
 {
     public interface IHashGenerator
     {
-        public Task<string> GenerateSaltedHash(string inputText);
+        public Task<byte[]> GenerateSaltedHash(string inputText);
     }
 }

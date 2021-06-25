@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using NewsWebsiteAPI.DataAccess.Repositories;
 using NewsWebsiteAPI.Infrastructure.Enums;
@@ -59,7 +60,7 @@ namespace NewsWebsiteAPI.DataAccess.Services
             {
                 var passwordHash = await HashGenerator.GenerateSaltedHash(authenticationRequest.Password);
 
-                if (account.PasswordHash == passwordHash)
+                if (passwordHash.SequenceEqual(account.PasswordHash))
                 {
                     var role = (UserRole) account.RoleId;
                     var token = JwtGenerator.GenerateToken(account.Id, role);
