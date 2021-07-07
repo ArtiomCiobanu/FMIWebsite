@@ -57,7 +57,7 @@ export const PostPage = (props) => {
               <Breadcrumb.Item>
                 <Link to="/">Новости</Link>
               </Breadcrumb.Item>
-              <Breadcrumb.Item>Пост от {item.id}</Breadcrumb.Item>
+              <Breadcrumb.Item>Пост {item.id}</Breadcrumb.Item>
             </Breadcrumb>
             <Typography.Title>{item.title}</Typography.Title>
           </>
